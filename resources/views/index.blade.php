@@ -190,7 +190,7 @@
 						        <div class="col-md-3 size-product">
 				            <div class="product-item">
 					              <div class="pi-img-wrapper">
-						                <img src="<?php echo $photo; ?>" width="200px" height="150px" alt="Cửa Hàng Bánh Ngọt" style="overflow: hidden;">
+						                <img src="<?php echo $photo; ?>" width="100%" height="150px" alt="Cửa Hàng Bánh Ngọt" style="overflow: hidden;">
 						                <div>
 						                  <a href="direct/{{$vitri}}/{{$end}}/{{$ogrigin}}/{{$value['name']}}" class="btn">Chỉ đường</a>
 						                </div>
