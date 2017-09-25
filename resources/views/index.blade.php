@@ -94,7 +94,7 @@
 
 		<!-- END SEACH -->
 
-		<div class="hide-banner row">
+		{{-- <div class="hide-banner row">
 			<div class="col-md-offset-3 col-md-6 col-md-offset-3" style="margin-top: 30px;margin-bottom: 30px;color: #fff">
 				<div class="col-sm-3 col-xs-3">
 					<div class="fourbanner">
@@ -145,7 +145,7 @@
 
 
 			</div>
-		</div>
+		</div> --}}
 
 		<!-- END PHẦN FOUR BANNER -->	
 	</div>
@@ -158,7 +158,7 @@
 <section class="content-container">
 	<div class="row">
 		<div class="col-md-12">
-			<div id="menu-right" class="col-md-9 sidebar-right" >
+			<div id="menu-right" class="col-md-8 sidebar-right" >
 				<div class="col-md-12 realdata">
 		            <div class="col-md-12 no-padding detail">
 						<?php
@@ -187,7 +187,7 @@
 								  
 						        ?>
 								
-						        <div class="col-md-3 size-product">
+						        <div class="col-md-4 size-product">
 				            <div class="product-item">
 					              <div class="pi-img-wrapper">
 						                <img src="<?php echo $photo; ?>" width="100%" height="150px" alt="Cửa Hàng Bánh Ngọt" style="overflow: hidden;">
@@ -224,8 +224,8 @@
 				</div>
 <!-- LIST 2 -->
 			</div>
-			<div id="menu-left" class="col-md-3 no-padding sidebar-left">
-				<div class="menu-left-fix">
+			<div id="menu-left" class="col-md-4 no-padding sidebar-left" style="background-color: blue">
+				{{-- <div class="menu-left-fix">
 					<div style="height: 60px;background: #FE5F55;">
 						<p style="font-size: 16px;font-weight: bold;padding-left: 25px;color: #fff;padding-top: 20px;"> Bài viết mới nhất </p>
 					</div>
@@ -269,6 +269,9 @@
 					
 					<!-- End Item 1 -->
 					<hr>
+				</div> --}}
+				<div style="background-color: blue; width: 100%; height: 600px">
+					
 				</div>
 
 				<!-- End phan side -->
