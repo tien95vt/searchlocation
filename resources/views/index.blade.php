@@ -162,7 +162,7 @@
 				<div class="col-md-12 realdata">
 		            <div class="col-md-12 no-padding detail">
 						<?php
-						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&radius=5000&keyword='.$keyword.'&key=AIzaSyClghS2aCQIm4eUUmp5Of53o6ETwUJyJqI';
+						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&radius=5000&keyword='.$keyword.'&key=AIzaSyADPy2r5pBe_4SAKaSW5hLQFua_CiPBMzk';
 						$web = str_replace(' ','-',$web);
 						  error_reporting(0);
 						    $url = file_get_contents($web);
@@ -172,7 +172,7 @@
 						    	$lat = $value['geometry']['location']['lat'];
 						    	$long = $value['geometry']['location']['lng'];
 						    	$end = $lat.','.$long;
-						    	// $urldistance = file_get_contents("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=".$vitri."&destinations=".$end."&key=AIzaSyClghS2aCQIm4eUUmp5Of53o6ETwUJyJqI");
+						    	// $urldistance = file_get_contents("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=".$vitri."&destinations=".$end."&key=AIzaSyADPy2r5pBe_4SAKaSW5hLQFua_CiPBMzk");
 
 						    	// $getjson = json_decode($urldistance, true);
 						    	// foreach ($getjson['rows'] as $getdistance) {
@@ -182,7 +182,7 @@
 								   // }
 // End Xóa thử Xóa thử phần khoảng cách và time
 						      	foreach ($value['photos'] as $array) {
-								    $photo = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=".$array['photo_reference']."&key=AIzaSyClghS2aCQIm4eUUmp5Of53o6ETwUJyJqI";
+								    $photo = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=".$array['photo_reference']."&key=AIzaSyADPy2r5pBe_4SAKaSW5hLQFua_CiPBMzk";
 								    	
 								  
 						        ?>

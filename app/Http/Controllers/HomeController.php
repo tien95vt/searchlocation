@@ -18,8 +18,8 @@ class HomeController extends Controller
         // dd($vitri3);
         $ogrigin =str_replace('/','-',$request->positionName);;
         // Hiển thị các bài viết mới
-        $post = post::orderBy('created_at', 'desc')->take(3)->get();
-    	return view('index',['keyword'=>$keyword,'vitri'=>$vitri3,'ogrigin'=>$ogrigin, 'post'=>$post]);
+        // $post = post::orderBy('created_at', 'desc')->take(3)->get();
+    	return view('index',['keyword'=>$keyword,'vitri'=>$vitri3,'ogrigin'=>$ogrigin]);
     }
 
     public function direct($position="",$endposition="",$ogrigin="",$destination="")
