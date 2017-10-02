@@ -59,18 +59,21 @@
 						<li style="margin-top: 10px;"><button class="btn btn-success"><a href="add_post" style="color:white">Đăng Bài</a></button></li>
 						@endif
 						@if(session('No_Category'))
+
+
 							<p id="123"></p>
-						@endif
-					</ul>
-				</div><!-- /.navbar-collapse -->
-			</div>
-		</nav>
+							@endif
+						</ul>
+					</div><!-- /.navbar-collapse -->
+				</div>
+			</nav>
 
 		<div class="row">
 			<div class="col-md-12">
 				<center><h2 style="color: #fff;font-size: 30px;font-weight: 600;">TÌM KIẾM XUNG QUANH</h2></center>
+
 			</div>
-		</div>
+
 
 		<form action="{{route('getPosition')}}" method="get">
 			<div class="hide-search row">
@@ -94,12 +97,34 @@
 				        <button  class="btn btn-secondary custombtn" type="submit" id="search"><span class="glyphicon glyphicon-search" ></span></button>
 				      </span>
 				    </div>
-				</div>
-			</div>
-		</div>
-		</form>
 
-		<!-- END SEACH -->
+			{{-- <form action="{{route('getPosition')}}" method="get">
+				<div class="hide-search row">
+					<div class="search col-md-6 col-md-offset-3">
+						<div class="search-icon col-sm-6 col-xs-12">
+							<div class="input-group">
+								<input type="text" class="form-control" value="{{old('keyword')}}" name="keyword" placeholder="Tìm Kiếm..." id="keyword">
+								<span class="input-group-btn">
+									<button  class="btn btn-secondary" type="submit" id="search"><span class="glyphicon glyphicon-search" ></span></button>
+								</span>
+							</div>
+						</div>
+
+						<div class="col-sm-6 col-xs-12">
+							<div class="input-group">
+								<input type="text" class="form-control" value="{{old('positionName')}}" name="positionName" id="tenvitri" placeholder="Vị trí...">
+								<input type="hidden" id="vitri"  name="vitri">
+								<span class="input-group-btn">
+									<button class="btn btn-secondary" id="getPosition" type="button"><span class="glyphicon glyphicon-map-marker"></span></button>
+								</span>
+							</div>
+						</div>
+					</div> --}}
+					</div>
+				</div>
+			</form>
+
+			<!-- END SEACH -->
 
 		<div class="hide-banner row">
 			<div class="col-md-offset-3 col-md-6 col-md-offset-3" style="margin-top: 30px;margin-bottom: 30px;color: #fff">
@@ -180,19 +205,26 @@
 		<div class="col-md-12">
 			<div id="menu-right" class="col-md-8 sidebar-right" >
 				<div class="col-md-12 realdata">
-		            <div class="col-md-12 no-padding detail">
+					<div class="col-md-12 no-padding detail">
 						<?php
-						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&radius=5000&keyword='.$keyword.'&key=AIzaSyADPy2r5pBe_4SAKaSW5hLQFua_CiPBMzk';
+						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&radius=5000&keyword='.$keyword.'&key=AIzaSyBeiBgKLSP6N6KsTLVmhqgCdD9ryDHRp-8';
 						$web = str_replace(' ','-',$web);
-						  error_reporting(0);
-						    $url = file_get_contents($web);
-						    $xml = json_decode($url,true);
-						    foreach ($xml['results'] as $value) {
+						error_reporting(0);
+						  // thực thi file_get_contents
+						$url = file_get_contents($web);
+						$xml = json_decode($url,true);
+						// $latLongArray = mảng Lat Lng sau khi tìm kiếm
+						$latLongArray = [[]];
+						array_shift($latLongArray); //Xóa phần tử đầu
+						foreach ($xml['results'] as $value) {
  // Xóa thử phần khoảng cách và time
-						    	$lat = $value['geometry']['location']['lat'];
-						    	$long = $value['geometry']['location']['lng'];
-						    	$end = $lat.','.$long;
-						    	// $urldistance = file_get_contents("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=".$vitri."&destinations=".$end."&key=AIzaSyADPy2r5pBe_4SAKaSW5hLQFua_CiPBMzk");
+							$lat = $value['geometry']['location']['lat'];
+							$long = $value['geometry']['location']['lng'];
+							$end = $lat.','.$long;
+
+							$arr = array($lat, $long);
+							array_push($latLongArray, $arr);
+						    	// $urldistance = file_get_contents("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=".$vitri."&destinations=".$end."&key=AIzaSyBeiBgKLSP6N6KsTLVmhqgCdD9ryDHRp-8");
 
 						    	// $getjson = json_decode($urldistance, true);
 						    	// foreach ($getjson['rows'] as $getdistance) {
@@ -201,12 +233,13 @@
     							// 	$duration = str_replace("mins", "Phút", $tmp_duration);
 								   // }
 // End Xóa thử Xóa thử phần khoảng cách và time
-						      	foreach ($value['photos'] as $array) {
-								    $photo = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=".$array['photo_reference']."&key=AIzaSyADPy2r5pBe_4SAKaSW5hLQFua_CiPBMzk";
-								    	
-								  
-						        ?>
+							foreach ($value['photos'] as $array) {
+								$photo = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=".$array['photo_reference']."&key=AIzaSyBeiBgKLSP6N6KsTLVmhqgCdD9ryDHRp-8";
+
+
+								?>
 								
+
 						        <div class="col-md-4 size-product">
 				            <div class="product-item">
 					              <div class="pi-img-wrapper">
@@ -222,29 +255,30 @@
 
 					              	<div style="margin-top: 5px;"><i class="fa fa-map-marker icon-color-coffee"></i> <a href="direct/{{$vitri}}/{{$end}}/{{$ogrigin}}/{{$value['name']}}"><?php echo $value['vicinity']; ?></a></div>
 {{-- khoảng cách thời gian --}}
+
 					         {{--      	<div style="margin-top: 10px;"><i class="glyphicon glyphicon-road
-" aria-hidden="true"></i> <a href="#">{{$distance/1000}} Km</a> <i class="glyphicon glyphicon glyphicon-hourglass" aria-hidden="true"></i> <a href="#"> {{$duration}}</a></div> --}}
-{{-- End khoảng cách thời gian --}}
+					         	" aria-hidden="true"></i> <a href="#">{{$distance/1000}} Km</a> <i class="glyphicon glyphicon glyphicon-hourglass" aria-hidden="true"></i> <a href="#"> {{$duration}}</a></div> --}}
+					         	{{-- End khoảng cách thời gian --}}
 
-					              	<!-- <div style="margin-top: 10px;"><i class="glyphicon glyphicon glyphicon-hourglass" aria-hidden="true"></i> <a href="#">{{$duration}}</a></div> -->
+					         	<!-- <div style="margin-top: 10px;"><i class="glyphicon glyphicon glyphicon-hourglass" aria-hidden="true"></i> <a href="#">{{$duration}}</a></div> -->
 
-					              </div>
-					              <div class="sticker sticker-new"></div>
+					         </div>
+					         <div class="sticker sticker-new"></div>
 
-				            </div>
-				        </div>
-						        <?php
-						      }
-						    }
-						?>
-				        <!-- END PHẦN LIST ITEM -->
+					     </div>
+					 </div>
+					 <?php
+					}
+				}
+				?>
+				<!-- END PHẦN LIST ITEM -->
 
-		            </div>
-					<!-- LIST 2 -->
-				</div>
-<!-- LIST 2 -->
 			</div>
-			<div id="menu-left" class="col-md-4 no-padding sidebar-left" style="background-color: blue">
+			<!-- LIST 2 -->
+		</div>
+		<!-- LIST 2 -->
+	</div>
+	<div id="menu-left" class="col-md-4 no-padding sidebar-left" style="background-color: blue">
 				{{-- <div class="menu-left-fix">
 					<div style="height: 60px;background: #FE5F55;">
 						<p style="font-size: 16px;font-weight: bold;padding-left: 25px;color: #fff;padding-top: 20px;"> Bài viết mới nhất </p>
@@ -290,8 +324,9 @@
 					<!-- End Item 1 -->
 					<hr>
 				</div> --}}
-				<div style="background-color: blue; width: 100%; height: 600px">
-					
+				{{-- Map và danh sách marker --}}
+				<div id="map_index" style="background-color: blue; width: 100%; height: 600px">
+
 				</div>
 
 				<!-- End phan side -->
@@ -301,5 +336,39 @@
 	</div>
 </section>
 
+{{-- Load map sau khi tìm kiếm --}}
+<script>
+	// json_encode => string Lat, Long => 102, 231
+ 		var centerLatLng = <?php echo (json_encode($vitri)); ?>;
+ 	if(centerLatLng != "")
+ 	{
+ 		var splitCenter = centerLatLng.split(',');
+ 		var centerLat = Number(splitCenter[0]);
+ 		var centerLong = Number(splitCenter[1]);
+ 		// alert(centerLong);
+ 		// biến thành mảng javascript [][] 
+ 		var latLongArrayJs = <?php echo json_encode($latLongArray); ?>;
+
+ 		// Load map 	
+ 		var uluru = {lat: centerLat, lng: centerLong};
+        var map = new google.maps.Map(document.getElementById('map_index'), {
+        zoom: 12,
+        center: uluru
+        });
+        // danh sách marker
+        for(var i=0; i<latLongArrayJs.length; i++)
+        {
+        	var marker = new google.maps.Marker({
+        		position: new google.maps.LatLng(latLongArrayJs[i][0], latLongArrayJs[i][1]),
+        		map: map
+        	});
+        }
+ 	}
+ 	
+</script>
+
+
+
 <!-- XONG PHẦN CONTENT -->
 @endsection
+

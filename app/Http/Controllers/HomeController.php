@@ -16,7 +16,7 @@ class HomeController extends Controller
         $vitri2= str_replace(')','',$vitri1);
         $vitri3=str_replace(' ','',$vitri2);
         // dd($vitri3);
-        $ogrigin =str_replace('/','-',$request->positionName);;
+        $ogrigin =str_replace('/','-',$request->positionName);
         // Hiển thị các bài viết mới
         // $post = post::orderBy('created_at', 'desc')->take(3)->get();
     	return view('index',['keyword'=>$keyword,'vitri'=>$vitri3,'ogrigin'=>$ogrigin]);
