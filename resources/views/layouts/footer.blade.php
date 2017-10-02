@@ -96,6 +96,8 @@ glyphicon glyphicon-"></span>
 </div>
 <!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD0FewE444l6H8yw3-XVMOxF_kS27xIcAg
 "></script> -->
+ {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADPy2r5pBe_4SAKaSW5hLQFua_CiPBMzk"></script> --}}
+
 <script>
       function initMap() {
         var geocoder = new google.maps.Geocoder();
@@ -103,7 +105,8 @@ glyphicon glyphicon-"></span>
         document.getElementById('keyword').addEventListener('change', function() {
           var address = document.getElementById('tenvitri').value;
           geocoder.geocode({'address': address}, function(results, status) {
-            if (status === 'OK') {
+            // if (status == google.maps.GeocoderStatus.OK) {
+            if (status == 'OK') {
             	// geometry.location  => Lấy lat và long 
               $('#vitri').val(results[0].geometry.location);
               // alert(results[0].geometry.location);
@@ -142,7 +145,7 @@ function errorFunction(){
     var latlng = new google.maps.LatLng(lat, lng);
     geocoder.geocode({'latLng': latlng}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-      console.log(results)
+      // console.log(results)
         if (results[1]) {
          //formatted address
          // alert(results[0].formatted_address)
@@ -205,4 +208,6 @@ function scrollToTop() {
 }
 
 });
-    </script>
+
+ </script>
+{{-- map sau khi tìm kiếm --}}
