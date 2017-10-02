@@ -38,10 +38,10 @@ margin: 0;
 }
 
 .header{
-    overflow: hidden;
+    /*overflow: hidden;*/
 	box-shadow: 0 5px 5px -4px #333;
-    position: fixed;
-    z-index: 1;
+    position: relative;
+    z-index: 10;
     top: 0;
     width: 100%;
 }
@@ -246,15 +246,18 @@ body {
     padding: 0!important;
 }
 .sidebar-left{
+    top: 71px;
     bottom: 0;
     right: 0;
-    position: fixed;
+    position: fixed !important;
+    /*width: 100%;*/
+    height: 100%;
     
     
 }
 .sidebar-right{
     background-color: #fff;
-    margin-top: 200px;
+    /*margin-top: 200px;*/
     border-right: 1px solid #ccc;
 }
 
