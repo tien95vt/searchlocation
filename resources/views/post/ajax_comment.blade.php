@@ -4,7 +4,7 @@
 			<hr>
 				<div class="comment" style="width: 100%;height: 70px;">
 					<div class="comment-head" style="float: left; ">
-						<a href=""><img  width="60px" height="60px" src="{{asset('upload/picture/profile/').'/'.$valueComment->user->profile->avatar}}" class="img-responsive img-circle"></a>
+						<a href=""><img src="{{asset('upload/picture/profile/').'/'.$valueComment->user->profile->avatar}}" class="img-responsive img-circle img-profile-nm"></a>
 					</div>
 					<div class="comment-title" style="float: left;font-size: 15px;font-weight: 600;margin-left: 15px;">
 						<a href="">{{$valueComment->user->name}}</a>

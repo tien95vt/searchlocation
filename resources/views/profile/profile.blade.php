@@ -30,7 +30,7 @@
         </div>
         <div class="panel-body" style="font-size: 16px;">
           <div class="row">
-            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="{{asset('upload/picture/profile/').'/'.$user->Profile->avatar}} " class="img-circle img-responsive"> 
+            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="{{asset('upload/picture/profile/').'/'.$user->Profile->avatar}}" class="img-circle img-responsive img-profile-lg"> 
               <a id='id_avatar' name="avatar" >Thay đổi ảnh đại diện <i  class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
             </div>
             
@@ -39,31 +39,42 @@
                 <tbody>
                   <tr>
                     <td>Tên Thành Viên</td>
-                    <td>{{$user->name}} <a name="name" class="xd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                    <td>{{$user->name}} </td>
+                    <td><a name="name" class="xd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                   </tr>
                   <tr>
                     <td>Ngày Sinh</td>
-                    <td>{{ Carbon\Carbon::parse($user->Profile->date_of_birth)->format('d-m-Y') }}  <a name="date_of_birth" class="xd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                    <td>{{ Carbon\Carbon::parse($user->Profile->date_of_birth)->format('d-m-Y') }}  </td>
+                    <td><a name="date_of_birth" class="xd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                   </tr>
                 <tr>
                   <td>Địa Chỉ</td>
-                  <td>{{$user->Profile->address}}  <a name="address" class="xd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a</td>
+                  <td>{{$user->Profile->address}}  </td>
+                  <td><a name="address" class="xd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                 </tr>
                   <tr>
                     <td>Facebook </td>
-                    <td>{{$user->Profile->facebook}}  <a name="facebook" class="xd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                    <td>{{$user->Profile->facebook}}  </td>
+                    <td><a name="facebook" class="xd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                   </tr>
 
                   <tr>
                     <td>Email</td>
-                    <td><a href="mailto:info@support.com">{{$user->email}}  <a name="email" class="xd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></a></td>
+                    <td><a href="mailto:info@support.com">{{$user->email}} </a></td> 
+                    <td><a name="email" class="xd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                   </tr>
 
                   <tr>
                     <td>Số điện thoại</td>
-                    <td>{{$user->Profile->phone}}  <a name="phone" class="xd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a><br>
+                    <td>{{$user->Profile->phone}} </td>
+                     <td><a name="phone" class="xd"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a><br>
                     </td>
-                  </tr>                 
+                  </tr>   
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>              
                 
                 </tbody>
               </table>

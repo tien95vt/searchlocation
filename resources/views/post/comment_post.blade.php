@@ -26,7 +26,7 @@
 		<h1>.......</h1>
 		<div id="ajaxComment">
 			@foreach($comment as $valueComment)
-			<img style="float: left" src="{{asset('upload/picture/profile/').'/'.$valueComment->user->profile->avatar}}"  width="50em" height="45em" alt="">
+			<img class="img-profile-nm" style="float: left" src="{{asset('upload/picture/profile/').'/'.$valueComment->user->profile->avatar}}"alt="">
 			{{-- Tên user + time--}}
 			<p >{{$valueComment->user->name}} <span style="padding-left: 2em">{{$valueComment->created_at}}</span></p>
 			{{-- nội dung bình luận --}}
