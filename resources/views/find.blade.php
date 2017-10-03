@@ -3,7 +3,7 @@
 
 <!-- END PHẦN HEADER -->
 <!-- BẮT ĐẦU PHẦN CONTENT -->
-<?php $key = 'AIzaSyB7LulDnPfgzZmCuGLJSy6CKHKG8bVmIlg'; ?>
+<?php $key = 'AIzaSyDaf0E0mNGVIGbKGHJXkKW2S-a8uTTccow'; ?>
 
 <header class="header" style="position: fixed; box-shadow: none;">
 		<style>
@@ -79,26 +79,27 @@
 			
 
 
-		<form action="{{route('getFind')}}" method="get">
-			<div class="hide-search row">
+		<form action="{{route('getFind')}}" method="get" id="timkiem">
+			
+			<div class="col-md-12 hide-search row">
 			<div class="search col-md-6 col-md-offset-3">
 				
 
 				<div class="col-sm-6 col-xs-12">
-					<div class="input-group border-div">
-				      <input type="text" class="customtextbox form-control" value="{{old('positionName')}}" name="positionName" id="tenvitri" placeholder="Vị trí...">
+					<div style="border: 3px solid rgba(0, 0, 0, .1);" class="input-group">
+				      <input type="text" class="customtextbox form-control" value="{{old('positionName')}}" name="positionName" id="tenvitri" placeholder="<?php if($ogrigin != null) echo $ogrigin; else echo "Tìm kiếm..."; ?>"">
 				      <input type="hidden" id="vitri"  name="vitri">
 				      <span class="input-group-btn">
-				        <button class="btn btn-secondary custombtn" id="getPosition" type="button"><span class="glyphicon glyphicon-map-marker"></span></button>
+				        <button style="background-color: #317E8C" class="btn btn-secondary custombtn" id="getPosition" type="button"><span class="glyphicon glyphicon-map-marker"  style="color: #fff"></span></button>
 				      </span>
 				    </div>
 				</div>
 
 				<div class="search-icon col-sm-6 col-xs-12">
-					<div class="input-group border-div">
-				      <input type="text" class="customtextbox form-control" value="{{old('keyword')}}" name="keyword" placeholder="Tìm Kiếm..." id="keyword">
+					<div style="border: 3px solid rgba(0, 0, 0, .1);" class="input-group">
+				      <input type="text" class="customtextbox form-control" value="{{old('keyword')}}" name="keyword" placeholder="<?php if($keyword != null) echo $keyword; else echo "Vị trí..."; ?>" id="keyword">
 				      <span class="input-group-btn">
-				        <button  class="btn btn-secondary custombtn" type="submit" id="search"><span class="glyphicon glyphicon-search" ></span></button>
+				        <button style="background-color: #317E8C" class="btn btn-secondary custombtn" type="submit" id="search"><span class="glyphicon glyphicon-search" style="color: #fff"></span></button>
 				      </span>
 				    </div>
 
@@ -126,6 +127,8 @@
 					</div> --}}
 					</div>
 				</div>
+
+
 			</form>
 
 			<!-- END SEACH -->
@@ -136,9 +139,9 @@
 </div>
 </header>
 <section class="content-container">
-	<div class="row">
+	<div class="small-gap row">
 		<div class="col-md-12">
-			<div id="menu-right" class="col-md-8 sidebar-right" style="padding-top: 150px;" >
+			<div id="menu-right" class="col-md-7 sidebar-right" style="padding-top: 150px;" >
 				<div class="col-md-12 realdata">
 					<div class="col-md-12 no-padding detail">
 						<?php
@@ -173,7 +176,6 @@
 
 
 								?>
-								
 
 						        <div class="col-md-4 size-product">
 				            <div class="product-item">
@@ -184,9 +186,9 @@
 						                </div>
 					              </div>
 					              
-					              <div class="col-md-12" style="font-size: 14px;">
+					              <div class="col-md-12">
 					              	<!-- <div style="height: 30px;margin-top: 10px;"><a class="course-title" href="shop-item.html">Bánh hiện đại</a></div> -->
-					              	<div style="margin-top: 10px;"><i class="fa fa-home" aria-hidden="true"></i> <a href="#"><?php echo $value['name']; ?></a></div>
+					              	<div style="margin-top: 5px ;text-align: center;">{{-- <i class="fa fa-home" aria-hidden="true"></i> --}} <a style="font-size: 20px;font-style: bold;" href="#"><?php echo $value['name']; ?></a></div>
 
 					              	<div style="margin-top: 5px;"><i class="fa fa-map-marker icon-color-coffee"></i> <a href="direct/{{$vitri}}/{{$end}}/{{$ogrigin}}/{{$value['name']}}"><?php echo $value['vicinity']; ?></a></div>
 {{-- khoảng cách thời gian --}}
@@ -198,7 +200,7 @@
 					         	<!-- <div style="margin-top: 10px;"><i class="glyphicon glyphicon glyphicon-hourglass" aria-hidden="true"></i> <a href="#">{{$duration}}</a></div> -->
 
 					         </div>
-					         <div class="sticker sticker-new"></div>
+					         {{-- <div class="sticker sticker-new"></div> --}}
 
 					     </div>
 					 </div>
@@ -213,7 +215,7 @@
 		</div>
 		<!-- LIST 2 -->
 	</div>
-	<div id="menu-left" class="col-md-4 no-padding sidebar-left" style="background-color: blue">
+	<div id="menu-left" class="col-md-5 no-padding sidebar-left" style="background-color: blue">
 				{{-- <div class="menu-left-fix">
 					<div style="height: 60px;background: #FE5F55;">
 						<p style="font-size: 16px;font-weight: bold;padding-left: 25px;color: #fff;padding-top: 20px;"> Bài viết mới nhất </p>
@@ -269,6 +271,7 @@
 
 		</div>
 	</div>
+		
 </section>
 
 {{-- Load map sau khi tìm kiếm --}}
@@ -289,14 +292,24 @@
         var map = new google.maps.Map(document.getElementById('map_index'), {
         zoom: 12,
         center: uluru
+        // gestureHandling: 'greedy'
         });
         // danh sách marker
+       
+       
+
         for(var i=0; i<latLongArrayJs.length; i++)
         {
+        	var iconBase = '../public/images/home-location-marker.png';
         	var marker = new google.maps.Marker({
         		position: new google.maps.LatLng(latLongArrayJs[i][0], latLongArrayJs[i][1]),
-        		map: map
+        		animation: google.maps.Animation.DROP,
+        		map: map,
+        		icon: iconBase
+
+        		
         	});
+
         }
  	}
  	
