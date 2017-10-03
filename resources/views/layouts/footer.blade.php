@@ -102,7 +102,7 @@ glyphicon glyphicon-"></span>
       function initMap() {
         var geocoder = new google.maps.Geocoder();
 
-        document.getElementById('keyword').addEventListener('change', function() {
+        document.getElementById('keyword').addEventListener('mouseover', function() {
           var address = document.getElementById('tenvitri').value;
           geocoder.geocode({'address': address}, function(results, status) {
             // if (status == google.maps.GeocoderStatus.OK) {
@@ -111,7 +111,7 @@ glyphicon glyphicon-"></span>
               $('#vitri').val(results[0].geometry.location);
               // alert(results[0].geometry.location);
             } else {
-              alert('Geocode was not successful for the following reason: ' + status);
+              // alert('Geocode was not successful for the following reason: ' + status);
             }
           });
         });
@@ -163,6 +163,16 @@ function errorFunction(){
         	$('#tenvitri').val(results[0].formatted_address);
         	// $('#vitri').val(lat +','+lng);
         });
+        document.getElementById('search').addEventListener('click',function(){
+        	document.getElementById('timkiem').submit();
+        })
+         document.getElementById('keyword').onkeydown = function(e){
+         	if(e.keyCode === 13){
+         		document.getElementById('timkiem').submit();
+         	}
+
+         }
+        	
         } else {
           alert("No results found");
         }

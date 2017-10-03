@@ -3,7 +3,7 @@
 
 <!-- END PHẦN HEADER -->
 <!-- BẮT ĐẦU PHẦN CONTENT -->
-<?php $key = 'AIzaSyDaf0E0mNGVIGbKGHJXkKW2S-a8uTTccow'; ?>
+<?php $key = 'AIzaSyDh49871Fojx6NZmDus-iFRDGohmRYPYss'; ?>
 
 <header class="header" style="position: fixed; box-shadow: none;">
 		<style>
