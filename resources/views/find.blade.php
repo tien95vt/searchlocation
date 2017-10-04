@@ -99,7 +99,7 @@
 					<div style="border: 3px solid rgba(0, 0, 0, .1);" class="input-group">
 				      <input type="text" class="customtextbox form-control" value="{{old('keyword')}}" name="keyword" placeholder="<?php if($keyword != null) echo $keyword; else echo "Vị trí..."; ?>" id="keyword">
 				      <span class="input-group-btn">
-				        <button style="background-color: #317E8C" class="btn btn-secondary custombtn" type="submit" id="search"><span class="glyphicon glyphicon-search" style="color: #fff"></span></button>
+				        <button style="background-color: #317E8C" class="btn btn-secondary custombtn" type="button" id="search"><span class="glyphicon glyphicon-search" style="color: #fff"></span></button>
 				      </span>
 				    </div>
 
