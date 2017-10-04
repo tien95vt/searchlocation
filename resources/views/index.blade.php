@@ -75,7 +75,7 @@
 			</div>
 
 
-		<form action="{{route('getFind')}}" method="get">
+		<form action="{{route('getFind')}}" method="get" id="timkiem">
 			<div class="hide-search row">
 			<div class="search col-md-6 col-md-offset-3">
 				
@@ -94,7 +94,7 @@
 					<div class="input-group border-div">
 				      <input type="text" class="customtextbox form-control" value="{{old('keyword')}}" name="keyword" placeholder="Tìm Kiếm..." id="keyword">
 				      <span class="input-group-btn">
-				        <button  class="btn btn-secondary custombtn" type="submit" id="search"><span class="glyphicon glyphicon-search" ></span></button>
+				        <button  class="btn btn-secondary custombtn" type="button" id="search"><span class="glyphicon glyphicon-search" ></span></button>
 				      </span>
 				    </div>
 

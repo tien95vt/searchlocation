@@ -100,8 +100,10 @@ glyphicon glyphicon-"></span>
 
 <script>
       function initMap() {
-        var geocoder = new google.maps.Geocoder();
+      	 autoComplete();
 
+
+      	var geocoder = new google.maps.Geocoder();
         document.getElementById('keyword').addEventListener('mouseover', function() {
           var address = document.getElementById('tenvitri').value;
           geocoder.geocode({'address': address}, function(results, status) {
@@ -220,5 +222,19 @@ function scrollToTop() {
 });
 
  </script>
+<script type="text/javascript">
+	  function autoComplete(){
+
+			var options = {  componentRestrictions: { country: 'vn' }
+		};
+
+      		var input = document.getElementById('tenvitri');
+        	var autocomplete = new google.maps.places.Autocomplete(input,options);
+      	//End auto complete
+	  } 
+
+</script>
+   
+ 
 {{-- map sau khi tìm kiếm --}}
 
