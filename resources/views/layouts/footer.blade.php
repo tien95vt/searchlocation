@@ -97,12 +97,13 @@ glyphicon glyphicon-"></span>
 <!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD0FewE444l6H8yw3-XVMOxF_kS27xIcAg
 "></script> -->
  {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADPy2r5pBe_4SAKaSW5hLQFua_CiPBMzk"></script> --}}
+
 <script>
       function initMap() {
-      	autoComplete();
+      	 autoComplete();
 
-        var geocoder = new google.maps.Geocoder();
 
+      	var geocoder = new google.maps.Geocoder();
         document.getElementById('keyword').addEventListener('mouseover', function() {
           var address = document.getElementById('tenvitri').value;
           geocoder.geocode({'address': address}, function(results, status) {
@@ -220,20 +221,20 @@ function scrollToTop() {
 
 });
 
-// autocomplete search
-function autoComplete()
-{
-	var input = document.getElementById('tenvitri');
-
-	var options = {
-		// types: ['(cities)'],
-		componentRestrictions: {country: 'vn'}
-	};
-
-	var autocomplete = new google.maps.places.Autocomplete(input, options);
-}
-
-
  </script>
+<script type="text/javascript">
+	  function autoComplete(){
+
+			var options = {  componentRestrictions: { country: 'vn' }
+		};
+
+      		var input = document.getElementById('tenvitri');
+        	var autocomplete = new google.maps.places.Autocomplete(input,options);
+      	//End auto complete
+	  }
+
+</script>
+
+
 {{-- map sau khi tìm kiếm --}}
 

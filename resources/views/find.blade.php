@@ -5,13 +5,15 @@
 <!-- BẮT ĐẦU PHẦN CONTENT -->
 <?php $key = 'AIzaSyDh49871Fojx6NZmDus-iFRDGohmRYPYss'; ?>
 
+
 <header class="header" style="position: fixed; box-shadow: none;">
 		<style>
 			.navbar-default{
 			/*background-color: transparent;
 			border-color: transparent;*/
 			margin-bottom: -10px;
-
+		}
+	
 		</style>
 <div class="row" style="background-color: #ECF0F1;background-size: cover;background-repeat: no-repeat;">
 	<div class="col-md-12" style="z-index: 200">
@@ -87,6 +89,7 @@
 
 				<div class="col-sm-6 col-xs-12">
 					<div style="border: 3px solid rgba(0, 0, 0, .1);" class="input-group">
+
 				      <input type="text" class="customtextbox form-control" value="{{old('positionName')}}" name="positionName" id="tenvitri" placeholder="<?php if($ogrigin != null) echo $ogrigin; else echo "Tìm kiếm..."; ?>"">
 				      <input type="hidden" id="vitri"  name="vitri">
 				      <span class="input-group-btn">

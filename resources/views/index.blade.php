@@ -75,7 +75,7 @@
 			</div>
 
 
-		<form action="{{route('getFind')}}" method="get">
+		<form action="{{route('getFind')}}" method="get" id="timkiem">
 			<div class="hide-search row">
 			<div class="search col-md-6 col-md-offset-3">
 				

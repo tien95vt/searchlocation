@@ -367,4 +367,10 @@ body {
     padding-left: 10px;
     padding-right: 10px;
 }
+.pac-container:after { /*delete prowed by google
+     /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+    background-image: none !important;
+       height: 0px;
+}
+
 
