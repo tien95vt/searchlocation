@@ -231,10 +231,10 @@ function scrollToTop() {
       		var input = document.getElementById('tenvitri');
         	var autocomplete = new google.maps.places.Autocomplete(input,options);
       	//End auto complete
-	  } 
+	  }
 
 </script>
-   
- 
+
+
 {{-- map sau khi tìm kiếm --}}
 
