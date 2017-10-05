@@ -81,7 +81,7 @@
 						<div class="col-sm-12">
 
 						<div class="form-group ">
-						<button type="submit" style="height: 40px;border-radius: 2px;" class="btn btn-primary btn-lg btn-block login-button">Đăng ký</button>
+						<button type="submit" style="height: 40px;border-radius: 2px;background-color: #317e8c" class="btn btn-primary btn-lg btn-block login-button">Đăng ký</button>
 					</div>
 					<div class="login-register">
 						<center><h5>Bạn đã có tài khoản? <a href="login_form">Đăng nhập</a> ngay.</h5></center><br/>
