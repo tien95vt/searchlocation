@@ -3,7 +3,7 @@
 
 <!-- END PHẦN HEADER -->
 <!-- BẮT ĐẦU PHẦN CONTENT -->
-<?php $key = 'AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU'; ?>
+<?php $key = 'AIzaSyBdG28rxjxq78b9162r9YpfINWyzGefSys'; ?>
 
 
 <header class="header" style="position: fixed; box-shadow: none;">
@@ -30,7 +30,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" style="font-family: 'Monoton', cursive;font-size: 30px;" href="#">ITFood</a>
+					<a class="navbar-brand" style="font-family: 'Monoton', cursive;font-size: 30px;" href="index">ITFood</a>
 				</div>
 		
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -144,11 +144,11 @@
 <section class="content-container">
 	<div class="small-gap row">
 		<div class="col-md-12">
-			<div id="menu-right" class="col-md-7 sidebar-right" style="padding-top: 150px;" >
+			<div id="menu-right" class="col-md-7 sidebar-right" style="padding-top: 138px;" >
 				<div class="col-md-12 realdata">
 					<div class="col-md-12 no-padding detail">
 						<?php
-						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&radius=5000&keyword='.$keyword.'&key='.$key;
+						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&radius=5000&type='.$keyword.'&key='.$key;
 						$web = str_replace(' ','-',$web);
 						error_reporting(0);
 						  // thực thi file_get_contents
@@ -293,7 +293,7 @@
  		// Load map 	
  		var uluru = {lat: centerLat, lng: centerLong};
         var map = new google.maps.Map(document.getElementById('map_index'), {
-        zoom: 12,
+        zoom: 13,
         center: uluru
         // gestureHandling: 'greedy'
         });
@@ -303,7 +303,7 @@
 
         for(var i=0; i<latLongArrayJs.length; i++)
         {
-        	var iconBase = '../public/images/home-location-marker.png';
+        	var iconBase = '../public/images/information.png';
         	var marker = new google.maps.Marker({
         		position: new google.maps.LatLng(latLongArrayJs[i][0], latLongArrayJs[i][1]),
         		animation: google.maps.Animation.DROP,

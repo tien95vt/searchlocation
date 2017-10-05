@@ -62,7 +62,7 @@
 					<div class="col-sm-12">
 					<div class="form-group ">
 						{{-- <div class="col-sm-10 col-sm-offset-1"> --}}
-							<button type="submit" style="height: 40px;border-radius: 2px;" class="btn btn-primary btn-lg btn-block login-button">Đăng nhập</button>
+							<button type="submit" style="height: 40px;border-radius: 2px;background-color: #317e8c" class="btn btn-primary btn-lg btn-block login-button">Đăng nhập</button>
 						</div>
 					</div>
 					{{-- <div class="col-sm-10 col-sm-offset-2"> --}}

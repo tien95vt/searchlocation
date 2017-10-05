@@ -13,6 +13,7 @@
     <link href="{{asset('css/rolltop.css')}}" rel="stylesheet">
     <link href="{{asset('css/responsive.css')}}" rel="stylesheet">
     <link href="{{asset('css/simple-sidebar.css')}}" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.css')}}">
     <!-- <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"> -->
     
@@ -20,7 +21,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Monoton|Ubuntu" rel="stylesheet">  
     {{-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD0FewE444l6H8yw3-XVMOxF_kS27xIcAg"></script>  --}}
     {{-- sua key --}}
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU&libraries=places"></script> 
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU&libraries=places&language=vi&region=VN"></script> 
     <script src="{{asset('js/jquery.js')}}"></script>
     <link href="https://fonts.googleapis.com/css?family=Monoton|Ubuntu" rel="stylesheet">  
     <!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyB1R-BXoJrqQYkjReXGvPsWo_FZv8bgF1w"></script>   -->

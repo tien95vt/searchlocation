@@ -37,7 +37,7 @@
                 <a href="{{asset('profile')}}/{{Auth::user()->id}}"><i class="fa fa-cog" aria-hidden="true"></i><span style="padding-left: 1.5em">Cập Nhật Thông Tin Cá Nhân</span></a>
                 </li>
 
-                <li><a href="{{url('logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="padding-left: 1.5em">Logout</span></a></li>
+                <li><a href="{{url('logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="padding-left: 1.5em">Đăng xuất</span></a></li>
               </ul>
             </li>
             <li style="margin-top: 10px;"><button class="btn btn-success"><a href="{{url('add_post')}}" style="color:white">Đăng Bài</a></button></li>
