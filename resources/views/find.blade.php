@@ -3,7 +3,11 @@
 
 <!-- END PHẦN HEADER -->
 <!-- BẮT ĐẦU PHẦN CONTENT -->
-<?php $key = 'AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU'; ?>
+<?php 
+$arrayKey = array("AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU", "AIzaSyDM59TDUtqoRyJ2sSdGXf97qCfLvfvB6uk", "AIzaSyD09hk8tNuDaJT7JdDu7NYLjSMdxdAt_6U", "AIzaSyBdG28rxjxq78b9162r9YpfINWyzGefSys", "AIzaSyA_cKC7YzUfwQvC7nVYMgB8Gcupt5BAE8k", "AIzaSyB_Ae2YS9wkPDGGA3YpYX5Q7Sxlv-9npp0");	//6
+$key = $arrayKey[2];	//2 
+
+?>
 
 
 <header class="header" style="position: fixed; box-shadow: none;">
@@ -157,8 +161,10 @@
 						// $latLongArray = mảng Lat Lng sau khi tìm kiếm
 						$latLongArray = [[]];
 						array_shift($latLongArray); //Xóa phần tử đầu
+						$tempA = 0;
 						foreach ($xml['results'] as $value) {
  // Xóa thử phần khoảng cách và time
+							$tempA++;
 							$lat = $value['geometry']['location']['lat'];
 							$long = $value['geometry']['location']['lng'];
 							$end = $lat.','.$long;
@@ -212,7 +218,7 @@
 				}
 				?>
 				<!-- END PHẦN LIST ITEM -->
-
+<?php echo "AAAAAAAAAAAAAA"."<br>".$tempA."<br>";?>
 			</div>
 			<!-- LIST 2 -->
 		</div>
@@ -293,14 +299,11 @@
  		// Load map 	
  		var uluru = {lat: centerLat, lng: centerLong};
         var map = new google.maps.Map(document.getElementById('map_index'), {
-        zoom: 12,
+        zoom: 13,
         center: uluru
         // gestureHandling: 'greedy'
         });
         // danh sách marker
-       
-       
-
         for(var i=0; i<latLongArrayJs.length; i++)
         {
         	var iconBase = '../public/images/home-location-marker.png';
@@ -308,11 +311,14 @@
         		position: new google.maps.LatLng(latLongArrayJs[i][0], latLongArrayJs[i][1]),
         		animation: google.maps.Animation.DROP,
         		map: map,
-        		icon: iconBase
-
-        		
+        		icon: iconBase       		
         	});
 
+        	var marker = new google.maps.Marker({
+        		position: new google.maps.LatLng(latLongArrayJs[0][0], latLongArrayJs[0][1]),
+        		animation: google.maps.Animation.DROP,
+        		map: map,      		
+        	});
         }
  	}
  	
