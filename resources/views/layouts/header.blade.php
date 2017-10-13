@@ -21,8 +21,8 @@
     {{-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD0FewE444l6H8yw3-XVMOxF_kS27xIcAg"></script>  --}}
     {{-- sua key --}}
     <?php
-        $arrayKey = array("AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU", "AIzaSyDM59TDUtqoRyJ2sSdGXf97qCfLvfvB6uk", "AIzaSyD09hk8tNuDaJT7JdDu7NYLjSMdxdAt_6U", "AIzaSyBdG28rxjxq78b9162r9YpfINWyzGefSys", "AIzaSyA_cKC7YzUfwQvC7nVYMgB8Gcupt5BAE8k", "AIzaSyB_Ae2YS9wkPDGGA3YpYX5Q7Sxlv-9npp0");   //6
-        $key = $arrayKey[2];
+        $arrayKey = array("AIzaSyAjsicLOeEsQfdF-rcc9_QBrxP7PCZrz58", "AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU", "AIzaSyDM59TDUtqoRyJ2sSdGXf97qCfLvfvB6uk", "AIzaSyD09hk8tNuDaJT7JdDu7NYLjSMdxdAt_6U", "AIzaSyBdG28rxjxq78b9162r9YpfINWyzGefSys", "AIzaSyA_cKC7YzUfwQvC7nVYMgB8Gcupt5BAE8k", "AIzaSyB_Ae2YS9wkPDGGA3YpYX5Q7Sxlv-9npp0");   //7
+        $key = $arrayKey[0];
         $source= "http://maps.googleapis.com/maps/api/js?libraries=places&language=vi&region=VN&key=".$key;
     ?>
 

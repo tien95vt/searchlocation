@@ -3,11 +3,11 @@ padding:0;
 margin: 0;  
 }
 
-.search{
+.search {
 	margin-top: 30px;
 }
 
-.search .search-icon{
+.search .search-icon {
 	margin-bottom: 10px;
 }
 
@@ -373,5 +373,7 @@ body {
     background-image: none !important;
        height: 0px;
 }
+
+
 
 
