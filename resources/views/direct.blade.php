@@ -16,6 +16,10 @@
   <link href="https://fonts.googleapis.com/css?family=Monoton|Ubuntu" rel="stylesheet"> 
    
     <style>
+    
+    .adp-legal{
+      display: none;
+    }
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
        .navbar-default{
@@ -99,35 +103,34 @@
     <!-- <div id="floating-panel">
     </div> -->
     @include('layouts.menu')
-    <div class="row">
-      <div class="col-md-12">
+       <div class="row">
+      <div class="col-md-4">
         <div class="start">
-          <button class="btn btn-success">Vị trí xuất phát :</button><span> {{$ogrigin}}</span>
+          {{-- <button class="btn btn-success">Vị trí xuất phát :</button> --}}
+          <i class="fa fa-home fa-2x" aria-hidden="true"></i><span style="font-size: 18px">Xuất phát: {{$ogrigin}}</span>
         </div>
         
         <div class="end" style="margin-top: 10px;">
-          <button class="btn btn-danger" style="margin-bottom: 20px;">Vị trí đích :</button> 
-          <span> {{$destination}}</span>
+         {{--  <button class="btn btn-danger" style="margin-bottom: 20px;">Vị trí đích :</button>  --}}
+         <i class="fa fa-home fa-2x" aria-hidden="true"></i> <span style="font-size: 18px">Đích: {{$destination}}</span>
         </div>
 
         <div class="end">
-          <a href="{{url('move/'.$endposition.'')}}" class="btn btn-info">
+          {{-- <a href="{{url('move/'.$endposition.'')}}" class="btn btn-info">
             <span class="glyphicon glyphicon-search"></span> Chỉ Đường
-          </a>
+          </a> --}}
           
           
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8">
-        <div id="map"></div>
+ 
+        <div id="right-panel"></div>
       </div>
 
-      <div class="col-md-4">
-        <div id="right-panel"></div>
-    
+      <div class="col-md-8">
+        <div style="position: fixed" id="map"></div>
       </div>
+
+      
     </div>
     <script src="{{asset('js/jquery.js')}}"></script>
     <script>

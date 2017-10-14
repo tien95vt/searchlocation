@@ -104,7 +104,7 @@ glyphicon glyphicon-"></span>
 
 
       	var geocoder = new google.maps.Geocoder();
-        document.getElementById('keyword').addEventListener('mouseover', function() {
+        document.getElementById('keyword').addEventListener('focus', function() {
           var address = document.getElementById('tenvitri').value;
           geocoder.geocode({'address': address}, function(results, status) {
             // if (status == google.maps.GeocoderStatus.OK) {
