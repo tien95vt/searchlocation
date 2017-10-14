@@ -4,30 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\post;
+use App\category;
 
 class HomeController extends Controller
 {
     public function getPosition(Request $request)
     {
-    	// $keyword = $request->keyword;
-    	// $vitri = $request->vitri;
-     //    // dd($vitri);
-     //    $vitri1 = str_replace('(','',$vitri);
-     //    $vitri2= str_replace(')','',$vitri1);
-     //    $vitri3=str_replace(' ','',$vitri2);
-     //    // dd($vitri3);
-     //    $ogrigin =str_replace('/','-',$request->positionName);
+        // Post Nhà hàng
+        $postNhahang = category::find(7)->post->take(4);
+        // Post khách sạn
+        $postKhachSan = category::find(8)->post->take(4);
         // Hiển thị các bài viết mới
-        // $post = post::orderBy('created_at', 'desc')->take(3)->get();
+        // $post = post::orderBy('created_at', 'desc')->take(5)->get();
     	// return view('index',['keyword'=>$keyword,'vitri'=>$vitri3,'ogrigin'=>$ogrigin]);
-        return view('index');
+        return view('index', ['postNhahang' => $postNhahang, 'postKhachSan' => $postKhachSan ]);
     }
 
     public function getFind(Request $request)
     {
         $keyword = $request->keyword;
         $vitri = $request->vitri;
-        // dd($vitri);
+        $radius = $request->radius_name;
+        if($radius == null)
+        {
+            $radius = 5;    //5km
+        }
+        $radius = $radius * 1000; // met
         $vitri1 = str_replace('(','',$vitri);
         $vitri2= str_replace(')','',$vitri1);
         $vitri3=str_replace(' ','',$vitri2);
@@ -35,7 +37,7 @@ class HomeController extends Controller
         $ogrigin =str_replace('/','-',$request->positionName);
         // Hiển thị các bài viết mới
         // $post = post::orderBy('created_at', 'desc')->take(3)->get();
-        return view('find',['keyword'=>$keyword,'vitri'=>$vitri3,'ogrigin'=>$ogrigin]);
+        return view('find',['keyword'=>$keyword,'vitri'=>$vitri3,'ogrigin'=>$ogrigin, 'radius'=>$radius]);
     }
 
     public function direct($position="",$endposition="",$ogrigin="",$destination="")
