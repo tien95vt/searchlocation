@@ -79,10 +79,10 @@
 
 				<form action="{{route('getFind')}}" method="get" id="timkiem">
 					<div class="hide-search row">
-						<div class="search col-md-6 col-md-offset-3">
+						<div class="search col-md-8 col-md-offset-2">
 
 
-							<div class="col-sm-6 col-xs-12">
+							<div class="col-sm-5 col-xs-12">
 								<div class="input-group border-div">
 									<input type="text" class="customtextbox form-control" value="{{old('positionName')}}" name="positionName" id="tenvitri" placeholder="Vị trí...">
 									<input type="hidden" id="vitri"  name="vitri">
@@ -92,7 +92,16 @@
 								</div>
 							</div>
 
-							<div class="search-icon col-sm-6 col-xs-12">
+							<div class="col-sm-3 col-xs-12">
+								<div class="input-group  border-div">
+									<input type="number" class="customtextbox form-control" value="" name="radius_name" placeholder="Bán kính cần tìm (km)" min="0.5" max="20" id="radius_id">
+									<span class="input-group-btn">
+										<button class="btn btn-secondary custombtn" type="button" id="search_radius"><span class="glyphicon glyphicon-transfer"></span></button>
+									</span>
+								</div>
+							</div>
+
+							<div class="search-icon col-sm-4 col-xs-12">
 								<div class="input-group border-div">
 									<input type="text" class="customtextbox form-control" value="{{old('keyword')}}" name="keyword" placeholder="Tìm Kiếm..." id="keyword">
 									<span class="input-group-btn">

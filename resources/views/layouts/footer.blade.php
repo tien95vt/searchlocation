@@ -164,6 +164,14 @@ function codeLatLng(lat, lng) {
         		document.getElementById('timkiem').submit();
         	}
         });
+        //increment khi bam nut
+        document.getElementById('search_radius').addEventListener('click',function(){
+        		var value = parseFloat(document.getElementById('radius_id').value, 10);
+			    value = isNaN(value) ? 0 : value;
+			    value+=0.5;
+			    document.getElementById('radius_id').value = value;
+        });
+        
         document.getElementById('keyword').onkeydown = function(e){
         	if(e.keyCode === 13){
         		if( testRadius( $("#radius_id").val() ) == 1)  //Đúng radius
@@ -225,11 +233,11 @@ function codeLatLng(lat, lng) {
   <script>
   	$(document).ready(function() {
   		$("#radius_id").blur(function(){
-			if( $("#radius_id").val() != "")
-			{
-				testRadius( $("#radius_id").val() );
-			}
-		});
+  			if( $("#radius_id").val() != "")
+  			{
+  				testRadius( $("#radius_id").val() );
+  			}
+  		});
   	});
   	function testRadius(radius){
   		if(radius == "")
@@ -251,4 +259,5 @@ function codeLatLng(lat, lng) {
   			return 1; //đúng
   		}
   	}
+
   </script>
