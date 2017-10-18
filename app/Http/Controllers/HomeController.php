@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\post;
 use App\category;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 
 class HomeController extends Controller
 {
     public function getPosition(Request $request)
     {
         // Post Nhà hàng
-        $postNhahang = category::find(7)->post->take(4);
+        $postNhahang = category::find(7)->post()->paginate(4, ['*'], 'pagination_a');
         // Post khách sạn
-        $postKhachSan = category::find(8)->post->take(4);
+        $postKhachSan = category::find(8)->post()->paginate(1, ['*'], 'pagination_b');
+        // $postKhachSan->setPageName('other_page');
+        
         // Hiển thị các bài viết mới
         // $post = post::orderBy('created_at', 'desc')->take(5)->get();
     	// return view('index',['keyword'=>$keyword,'vitri'=>$vitri3,'ogrigin'=>$ogrigin]);

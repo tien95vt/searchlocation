@@ -237,6 +237,7 @@
 					@php $breakRow++ ; @endphp
 					@endforeach
 				</div>
+				<div class="text-center">{{$postNhahang->appends(array_except(Request::query(), 'page'))->links()}}</div>
 			</div>
 		</div>
 		<div class="panel panel-primary" style="margin: 20px;">
@@ -286,6 +287,7 @@
 					@php $breakRow++ ; @endphp
 					@endforeach
 				</div>
+				<div class="text-center">{{$postKhachSan->appends(array_except(Request::query(), 'other_page'))->links()}}</div>
 			</div>
 		</div>
 
