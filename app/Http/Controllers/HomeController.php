@@ -30,6 +30,7 @@ class HomeController extends Controller
         $keyword = $request->keyword;
         $vitri = $request->vitri;
         $radius = $request->radius_name;
+        $checkType = $request->checkType;
         if($radius == null)
         {
             $radius = 5;    //5km
@@ -42,7 +43,8 @@ class HomeController extends Controller
         $ogrigin =str_replace('/','-',$request->positionName);
         // Hiển thị các bài viết mới
         // $post = post::orderBy('created_at', 'desc')->take(3)->get();
-        return view('find',['keyword'=>$keyword,'vitri'=>$vitri3,'ogrigin'=>$ogrigin, 'radius'=>$radius]);
+        
+        return view('find',['keyword'=>$keyword,'vitri'=>$vitri3,'ogrigin'=>$ogrigin, 'radius'=>$radius, 'checkType'=>$checkType]);
     }
 
     public function direct($position="",$endposition="",$ogrigin="",$destination="")

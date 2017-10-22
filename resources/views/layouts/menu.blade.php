@@ -11,7 +11,7 @@
         <span class="icon-bar"></span>
       </button>
       <!-- <a class="navbar-brand" style="font-family: 'Monoton', cursive;font-size: 30px;" href="{{route('getPosition')}}">ITFood</a> -->
-      <a class="navbar-brand" style="font-family: 'Monoton', cursive;font-size: 30px;" href="{{url('index')}}">ITFood</a>
+      <a class="navbar-brand" style="font-family: 'Monoton', cursive;font-size: 30px;" href="{{url('index')}}"><img src="/searchlocation/public/images/logo-small-single.png" alt="TiNa"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
