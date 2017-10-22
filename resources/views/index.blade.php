@@ -2,17 +2,21 @@
 @section('content')
 <header class="header">
 	<style>
-	.navbar-default{
+	.navbar-transparent{
 		background-color: transparent;
 		border-color: transparent;
+		position: fixed;
+		width: 100%;
+		z-index: 1000000000;
+		border-radius:none;
+
 	</style>
 
-
-	<div class="row" style="background-image: url('images/bg.jpg');background-size: cover;background-repeat: no-repeat;">
+	<div class="row" style="background-image: url('images/bg3.jpg');background-size: cover;background-repeat: no-repeat;">
 		<canvas id="constellationel"></canvas>
 		<div class="col-md-12" style="z-index: 200">
 			<div style=" position: absolute;height: 100%;width: 100%;opacity: 0.4;"></div>
-			<nav class="navbar navbar-default" role="navigation">
+			<nav class="navbar-default navbar-transparent" role="navigation">
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -24,7 +28,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" style="font-family: 'Monoton', cursive;font-size: 30px;" href="#">ITFood</a>
+						{{-- <a class="navbar-brand" href="#"><img style="text-align: center;" src="./images/logo-small.png" alt="logo"></a> --}}
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
@@ -50,15 +54,15 @@
 										<a href="{{asset('profile')}}/{{Auth::user()->id}}"><i class="fa fa-cog" aria-hidden="true"></i><span style="padding-left: 1.5em">Cập Nhật Thông Tin Cá Nhân</span></a>
 									</li>
 
-									<li><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="padding-left: 1.5em">Logout</span></a></li>
+									<li><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="padding-left: 1.5em">Đăng xuất</span></a></li>
 								</ul>
 							</li>
-							<li style="margin-top: 10px;"><button class="btn btn-success"><a href="add_post" style="color:white">Đăng Bài</a></button></li>
+							<li style="margin-top: 10px;"><button style="background-color: #317E8C;" class="btn"><a href="add_post" style="color:white">Đăng Bài</a></button></li>
 							@else
 							{{-- End thông tin user --}}
-							<li><a href="register_form">Đăng Ký</a></li>
-							<li><a href="login_form">Đăng Nhập</a></li>
-							<li style="margin-top: 10px;"><button class="btn btn-success"><a href="add_post" style="color:white">Đăng Bài</a></button></li>
+							<li><a style="color:white" href="register_form">Đăng Ký</a></li>
+							<li><a style="color:white" href="login_form">Đăng Nhập</a></li>
+							{{-- <li style="margin-top: 10px;"><button style="background-color: #317E8C;" class="btn"><a href="add_post" style="color:white">Đăng Bài</a></button></li> --}}
 							@endif
 							@if(session('No_Category'))
 
@@ -70,9 +74,12 @@
 				</div>
 			</nav>
 
-			<div class="row">
-				<div class="col-md-12">
-					<center><h2 style="color: #fff;font-size: 30px;font-weight: 600;">TÌM KIẾM XUNG QUANH</h2></center>
+			<div class="row row-first-page">
+				<div class="first-page">
+					<div class="col-md-12">
+					<center>
+						<img style="text-align: center;padding-bottom: 30px;" src="./images/logo-small.png" alt="logo">
+						<h2 style="color: #fff;font-size: 26px;font-weight: 600;">TÌM KIẾM MỌI ĐỊA ĐIỂM XUNG QUANH BẠN</h2></center>
 
 				</div>
 
@@ -82,30 +89,30 @@
 						<div class="search col-md-8 col-md-offset-2">
 
 
-							<div class="col-sm-5 col-xs-12">
+							<div class="col-sm-4 col-xs-12">
 								<div class="input-group border-div">
-									<input type="text" class="customtextbox form-control" value="{{old('positionName')}}" name="positionName" id="tenvitri" placeholder="Vị trí...">
+									<input type="text" style="height:60px;font-size: 18px;" class="customtextbox form-control" value="{{old('positionName')}}" name="positionName" id="tenvitri" placeholder="Vị trí">
 									<input type="hidden" id="vitri"  name="vitri">
 									<span class="input-group-btn">
-										<button class="btn btn-secondary custombtn" id="getPosition" type="button"><span class="glyphicon glyphicon-map-marker"></span></button>
+										<button style="width: 60px; height:60px;font-size: 18px;" class="btn btn-secondary custombtn" id="getPosition" type="button"><span class="glyphicon glyphicon-map-marker"></span></button>
 									</span>
 								</div>
 							</div>
 
-							<div class="col-sm-3 col-xs-12">
+							<div class="col-sm-4 col-xs-12">
 								<div class="input-group  border-div">
-									<input type="number" class="customtextbox form-control" value="" name="radius_name" placeholder="Bán kính cần tìm (km)" min="0.5" max="20" id="radius_id">
+									<input type="number" style="height:60px;font-size: 18px;" class="customtextbox form-control" value="" name="radius_name" placeholder="Bán kính (km)" min="0.5" max="20" id="radius_id">
 									<span class="input-group-btn">
-										<button class="btn btn-secondary custombtn" type="button" id="search_radius"><span class="glyphicon glyphicon-transfer"></span></button>
+										<button  style="width: 60px; height:60px;font-size: 18px;" class="btn btn-secondary custombtn" type="button" id="search_radius"><span class="glyphicon glyphicon-transfer"></span></button>
 									</span>
 								</div>
 							</div>
 
 							<div class="search-icon col-sm-4 col-xs-12">
 								<div class="input-group border-div">
-									<input type="text" class="customtextbox form-control" value="{{old('keyword')}}" name="keyword" placeholder="Tìm Kiếm..." id="keyword">
+									<input type="text" style="height:60px;font-size: 18px;" class="customtextbox form-control" value="{{old('keyword')}}" name="keyword" placeholder="Nội dung tìm" id="keyword">
 									<span class="input-group-btn">
-										<button  class="btn btn-secondary custombtn" type="button" id="search"><span class="glyphicon glyphicon-search" ></span></button>
+										<button  style="width: 60px; height:60px;font-size: 18px;" class="btn btn-secondary custombtn" type="button" id="search"><span class="glyphicon glyphicon-search" ></span></button>
 									</span>
 								</div>
 							</div>
@@ -116,7 +123,7 @@
 				<!-- END SEACH -->
 
 				<div class="hide-banner row">
-					<div class="col-md-offset-3 col-md-6 col-md-offset-3" style="margin-top: 30px;margin-bottom: 30px;color: #fff">
+					<div class="col-md-offset-3 col-md-6 col-md-offset-3" style="padding-top: 50px;margin-top: 30px;margin-bottom: 30px;color: #fff">
 						<div class="col-sm-3 col-xs-3">
 							<div class="fourbanner">
 								<center>
@@ -178,6 +185,8 @@
 					</div>
 				</div>
 
+				</div>
+				
 				<!-- END PHẦN FOUR BANNER -->	
 			</div>
 		</div>

@@ -87,6 +87,43 @@
 			</div>
 		</div>
 	</div>
+
+
+	<!-- Modal check permisstion-->
+	  <div class="modal fade bd-example-modal-sm" id="modelCheckPermission" role="dialog">
+	    <div class="modal-dialog modal-sm">
+
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header" style="padding: 10px; text-align: center;">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <i style="color: #e74c3c; font-size: 20px;" class="fa fa-2x fa-exclamation-triangle" aria-hidden="true"> VUI LÒNG NHẬP LẠI</i>
+	        </div>
+	        <div class="modal-body" style="padding: 10px; text-align: center;">
+	          <p>Không được để trống vị trí hoặc từ khóa cần tìm kiếm</p>
+	        </div>
+	      </div>
+
+	    </div>
+	  </div>
+
+	  <!-- Modal check radius-->
+	  <div class="modal fade bd-example-modal-sm" id="modelCheckRadius" role="dialog">
+	    <div class="modal-dialog modal-sm">
+
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header"  style="padding: 10px; text-align: center;">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <i style="color: #e74c3c; font-size: 20px;" class="fa fa-2x fa-exclamation-triangle" aria-hidden="true"> VUI LÒNG NHẬP LẠI</i>
+	        </div>
+	        <div class="modal-body" style="padding: 10px; text-align: center;">
+	          <p>Bán kính phải nằm trong khoảng từ 0 đến 50 km</p>
+	        </div>
+	      </div>
+
+	    </div>
+	  </div>
 </footer>
 <div class="scroll-top-wrapper ">
 	<span class="scroll-top-inner">
@@ -124,73 +161,97 @@
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
 		} 
-//Get the latitude and the longitude;
-function successFunction(position) {
-	var lat = position.coords.latitude;
-	var lng = position.coords.longitude;
-	codeLatLng(lat, lng)
-}
-function errorFunction(){
-	alert("Geocoder failed");
-}
-function initialize() {
-	geocoder = new google.maps.Geocoder();
-}
-function codeLatLng(lat, lng) {
-	var latlng = new google.maps.LatLng(lat, lng);
-	// alert(latlng);
-	geocoder.geocode({'latLng': latlng}, function(results, status) {
+	//Get the latitude and the longitude;
+	function successFunction(position) {
+		var lat = position.coords.latitude;
+		var lng = position.coords.longitude;
+		codeLatLng(lat, lng)
+	}
+	function errorFunction(){
+		alert("Geocoder failed");
+	}
+	function initialize() {
+		geocoder = new google.maps.Geocoder();
+	}
+	function codeLatLng(lat, lng) {
+		var latlng = new google.maps.LatLng(lat, lng);
+		geocoder.geocode({'latLng': latlng}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
-      // console.log(results)
-      if (results[1]) {
-         //formatted address
-         // alert(results[0].formatted_address);
-        //find country name
-        for (var i=0; i<results[0].address_components.length; i++) {
-        	for (var b=0;b<results[0].address_components[i].types.length;b++) {
-        		if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
-                    //this is the object you are looking for
-                    city= results[0].address_components[i];
-                    break;
-                }
-            }
-        }
-        $('#getPosition').click(function(){
-        	$('#tenvitri').val(results[0].formatted_address);
-        	// $('#vitri').val(lat +','+lng);
-        	// alert(lat +','+lng);
-        });
-        document.getElementById('search').addEventListener('click',function(){
-        	if( testRadius( $("#radius_id").val() ) == 1)
-        	{
-        		document.getElementById('timkiem').submit();
-        	}
-        });
-        //increment khi bam nut
-        document.getElementById('search_radius').addEventListener('click',function(){
-        	var value = parseFloat(document.getElementById('radius_id').value, 10);
-        	value = isNaN(value) ? 0 : value;
-        	value+=0.5;
-        	document.getElementById('radius_id').value = value;
-        });
-        
-        document.getElementById('keyword').onkeydown = function(e){
-        	if(e.keyCode === 13){
-        		if( testRadius( $("#radius_id").val() ) == 1)  //Đúng radius
-        		{
-        			document.getElementById('timkiem').submit();  			
-        		}
-        	}
-        }
-    } else {
-    	alert("No results found");
-    }
-} else {
-	alert("Geocoder failed due to: " + status);
+	      // console.log(results)
+	      if (results[1]) {
+	         //formatted address
+	         // alert(results[0].formatted_address)
+	        //find country name
+	        for (var i=0; i<results[0].address_components.length; i++) {
+	        	for (var b=0;b<results[0].address_components[i].types.length;b++) {
+	        		if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
+	                    //this is the object you are looking for
+	                    city= results[0].address_components[i];
+	                    break;
+	                }
+	            }
+	        }
+	        $('#getPosition').click(function(){
+	        	$('#tenvitri').val(results[0].formatted_address);
+	        	// $('#vitri').val(lat +','+lng);
+	        });
+
+	        document.getElementById('search').addEventListener('click',function(){
+
+	        	if(document.getElementById('tenvitri').value == '' || document.getElementById('keyword').value == ''){
+	        		$(document).ready(function(){
+					        $("#modelCheckPermission").modal();
+					});
+	        	}else{
+	        		if( testRadius( $("#radius_id").val() ) == 1)
+		        	{
+		        		document.getElementById('timkiem').submit();
+		        	}
+	        	}
+	        });
+
+
+
+	        //increment khi bam nut
+	        document.getElementById('search_radius').addEventListener('click',function(){
+	        		var value = parseFloat(document.getElementById('radius_id').value, 10);
+				    value = isNaN(value) ? 0 : value;
+				    value+=0.5;
+				    document.getElementById('radius_id').value = value;
+	        });
+
+
+	        document.getElementById('keyword').onkeydown = function(e){
+	        	if(e.keyCode === 13){
+	        		if(document.getElementById('tenvitri').value == '' || document.getElementById('keyword').value == ''){
+		        		$(document).ready(function(){
+						    $("#modelCheckPermission").modal();
+						});
+		        	}else{
+		        		if( testRadius( $("#radius_id").val() ) == 1)  //Đúng radius
+		        		{
+		        			document.getElementById('timkiem').submit();
+		        		}
+		        	}
+
+	        	}
+	        }
+
+
+
+		    } else {
+		    	alert("No results found");
+		    }
+		} else {
+			alert("Geocoder failed due to: " + status);
+		}
+	});
+
+
 }
-});
-}
-</script> 
+
+
+</script>
 
 <script src="{{asset('js/Constellation.js')}}"></script>
 <!-- Bootstrap Core JavaScript -->
@@ -204,9 +265,13 @@ function codeLatLng(lat, lng) {
 	$(document).ready(function(){
 		$(function(){
 			$(document).on( 'scroll', function(){
-				if ($(window).scrollTop() > 100) {
+				if ($(window).scrollTop() > 150) {
+					//$(".navbar-transparent").animate("background-color", "#317E8C"});
+					$(".navbar-transparent").css({"background-color": "#317E8C", "transition-duration": ".5s"});
+
 					$('.scroll-top-wrapper').addClass('show');
 				} else {
+					$(".navbar-transparent").css("background-color", "transparent");
 					$('.scroll-top-wrapper').removeClass('show');
 				}
 			});
@@ -248,12 +313,16 @@ function codeLatLng(lat, lng) {
   		}
   		else if( radius <= 0)
   		{
-  			alert("R<0: Bán kính phải lớn hơn 0");
+  			$(document).ready(function(){
+				$("#modelCheckRadius").modal();
+			});
   			return 0;
   		}
   		else if( radius > 50)
   		{
-  			alert("R>50: Bán kính phải nhỏ hơn 50 km");
+  			$(document).ready(function(){
+				$("#modelCheckRadius").modal();
+			});
   			return 0;
   		}
   		else
@@ -261,5 +330,7 @@ function codeLatLng(lat, lng) {
   			return 1; //đúng
   		}
   	}
+
+
 
   </script>

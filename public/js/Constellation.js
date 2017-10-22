@@ -52,10 +52,10 @@ $(document).ready(function () {
                     y: 0 // This value will be overwritten at startup
                 },
                 width: window.innerWidth,
-                height: 593,
+                height: 800,
                 velocity: 0.1,
-                length: 150,
-                distance: 120,
+                length: 120,
+                distance: 100,
                 radius: 250,
                 stars: []
             },

@@ -4,10 +4,13 @@
 <!-- END PHẦN HEADER -->
 <!-- BẮT ĐẦU PHẦN CONTENT -->
 <?php
-$arrayKey = array("AIzaSyAjsicLOeEsQfdF-rcc9_QBrxP7PCZrz58", "AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU", "AIzaSyDM59TDUtqoRyJ2sSdGXf97qCfLvfvB6uk", "AIzaSyD09hk8tNuDaJT7JdDu7NYLjSMdxdAt_6U", "AIzaSyBdG28rxjxq78b9162r9YpfINWyzGefSys", "AIzaSyA_cKC7YzUfwQvC7nVYMgB8Gcupt5BAE8k", "AIzaSyB_Ae2YS9wkPDGGA3YpYX5Q7Sxlv-9npp0", "AIzaSyCzQcMYA-9FZO4pBZAT7pw1d3U2Y75sMtE", "AIzaSyAzTaGh_nkps4V7mQ2GjFqdwRwU8Ypj3xs");   //8
-$key = $arrayKey[8];	//3
+	 $arrayKey = array("AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU", "AIzaSyAjsicLOeEsQfdF-rcc9_QBrxP7PCZrz58","AIzaSyD09hk8tNuDaJT7JdDu7NYLjSMdxdAt_6U", "AIzaSyDM59TDUtqoRyJ2sSdGXf97qCfLvfvB6uk",  "AIzaSyBdG28rxjxq78b9162r9YpfINWyzGefSys", "AIzaSyA_cKC7YzUfwQvC7nVYMgB8Gcupt5BAE8k", "AIzaSyB_Ae2YS9wkPDGGA3YpYX5Q7Sxlv-9npp0","AIzaSyCzQcMYA-9FZO4pBZAT7pw1d3U2Y75sMtE");   //7
+
+        	$key = $arrayKey[7];
 
 ?>
+
+
 
 
 <header class="header" style="position: fixed; box-shadow: none;">
@@ -37,7 +40,7 @@ $key = $arrayKey[8];	//3
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" style="font-family: 'Monoton', cursive;font-size: 30px;" href="#">ITFood</a>
+						<a class="navbar-brand" href="{{url('index')}}" style="font-family: 'Monoton', cursive;font-size: 30px;" href="#"><img src="./images/logo-small-single.png" alt="logo"></a>
 					</div>
 					
 					<!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,7 +67,7 @@ $key = $arrayKey[8];	//3
 									<a href="{{asset('profile')}}/{{Auth::user()->id}}"><i class="fa fa-cog" aria-hidden="true"></i><span style="padding-left: 1.5em">Cập Nhật Thông Tin Cá Nhân</span></a>
 								</li>
 
-								<li><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="padding-left: 1.5em">Logout</span></a></li>
+								<li><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="padding-left: 1.5em">Đăng xuất</span></a></li>
 							</ul>
 						</li>
 						<li style="margin-top: 10px;"><button class="btn btn-success"><a href="add_post" style="color:white">Đăng Bài</a></button></li>
@@ -72,7 +75,7 @@ $key = $arrayKey[8];	//3
 						{{-- End thông tin user --}}
 						<li><a href="register_form">Đăng Ký</a></li>
 						<li><a href="login_form">Đăng Nhập</a></li>
-						<li style="margin-top: 10px;"><button class="btn btn-success"><a href="add_post" style="color:white">Đăng Bài</a></button></li>
+						{{-- <li style="margin-top: 10px;"><button class="btn btn-success"><a href="add_post" style="color:white">Đăng Bài</a></button></li> --}}
 						@endif
 						@if(session('No_Category'))
 
@@ -91,6 +94,7 @@ $key = $arrayKey[8];	//3
 								<div style="border: 3px solid rgba(0, 0, 0, .1);" class="input-group">
 									<input type="text" class="customtextbox form-control" value="{{old('positionName')}}" name="positionName" id="tenvitri" placeholder="<?php if($ogrigin != null) echo $ogrigin; else echo "Tìm kiếm..."; ?>"">
 									<input type="hidden" id="vitri"  name="vitri">
+									<input type="hidden" id="checkType"  name="checkType">
 									<span class="input-group-btn">
 										<button style="background-color: #317E8C" class="btn btn-secondary custombtn" id="getPosition" type="button"><span class="glyphicon glyphicon-map-marker"  style="color: #fff"></span></button>
 									</span>
@@ -129,14 +133,25 @@ $key = $arrayKey[8];	//3
 	</div>
 </header>
 <section class="content-container">
-
 	<div class="small-gap row">
 		<div class="col-md-12">
-			<div id="menu-right" class="col-md-7 sidebar-right" style="padding-top: 150px;" >
+			<div id="menu-right" class="col-md-7 sidebar-right paddingHeader">
 				<div class="col-md-12 realdata">
+					<div class="col-md-4 col-md-offset-8" style="padding-bottom: 10px;">
+						<select class="form-control" name="slType" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius: 2px;">
+							<option value="prioritize" <?php if ($checkType == 'prominence') {echo 'selected="selected"';} ?> >Xếp theo địa điểm nổi bật nhất</option>
+							<option value="near" <?php if ($checkType == 'distance') {echo 'selected="selected"';} ?> >Xếp theo địa điểm gần nhất</option>
+						</select>
+					</div>
 					<div class="col-md-12 no-padding detail">
-						<?php
-						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&radius='.$radius.'&keyword='.$keyword.'&key='.$key;
+					<?php
+					//check type select box
+					if ($checkType == 'distance') {
+						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&rankby=distance'.'&keyword='.$keyword.'&key='.$key;
+					}else{
+						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&radius='.$radius.'&rankby=prominence'.'&keyword='.$keyword.'&key='.$key;
+					}//echo $web;
+
 						$web = str_replace(' ','-',$web);
 						error_reporting(0);
 						  // thực thi file_get_contents
@@ -147,7 +162,9 @@ $key = $arrayKey[8];	//3
 						// 0:lat, 1:lng, 2:photo, 3:name, 4:address
 						$latLongArray = [[[[[]]]]];
 						array_shift($latLongArray); //Xóa phần tử đầu
+						$countRequest = 0;
 						foreach ($xml['results'] as $value) {
+							$countRequest +=1;
  // Xóa thử phần khoảng cách và time
 							$lat = $value['geometry']['location']['lat'];
 							$long = $value['geometry']['location']['lng'];
@@ -158,6 +175,7 @@ $key = $arrayKey[8];	//3
 								foreach($value['photos'] as $arrPhoto)
 								{
 									$photo = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=".$arrPhoto['photo_reference']."&key=".$key;
+									$countRequest +=1;
 								}
 							}
 							else
@@ -169,8 +187,6 @@ $key = $arrayKey[8];	//3
 							array_push($latLongArray, $arr);
 							?>
 							
-
-
 							<div class="col-md-4 size-product">
 								<div class="product-item" id="{{$end}}" >
 									<div class="pi-img-wrapper">
@@ -193,6 +209,7 @@ $key = $arrayKey[8];	//3
 							<?php
 							
 						}
+						//echo $countRequest;
 						?>
 						<!-- END PHẦN LIST ITEM -->
 
@@ -234,7 +251,7 @@ $key = $arrayKey[8];	//3
 
 		</div>
 	</div>
-	
+
 </section>
 
 {{-- Load map sau khi tìm kiếm --}}
@@ -289,7 +306,7 @@ $key = $arrayKey[8];	//3
         	infowindow = new google.maps.InfoWindow();
 
         	google.maps.event.addListener(marker, 'mouseover', function () {
-        		this.setIcon('../public/images/red.png');
+        		 this.setIcon('../public/images/red.png');
         	});
         	google.maps.event.addListener(marker, 'mouseout', function () {
         		this.setIcon('../public/images/green.png');
@@ -358,11 +375,11 @@ $key = $arrayKey[8];	//3
         });
         //set infowindow markercenter
         google.maps.event.addListener(markerCenter, 'click', function () {
-        	infowindow.setContent('<div class="changeclose"><div class="gm-style-iw" style="border:none;padding:10px;">'+ '{{$ogrigin}}' +'</div></div>');
-        	infowindow.setOptions({maxWidth:250});
-        	infowindow.open(map, this);
-        });
-
+        		infowindow.setContent('<div class="changeclose"><div class="gm-style-iw" style="border:none;padding:10px;">'+ '{{$ogrigin}}' +'</div></div>');
+        		infowindow.setOptions({maxWidth:250});
+        		infowindow.open(map, this);
+        	});
+        	
 
         // Array Marker
         var markerArray ={};
@@ -392,7 +409,6 @@ $key = $arrayKey[8];	//3
         	});   	
 
         }
-    }
 
 	// place detail
 	$(document).ready(function() {
@@ -444,7 +460,7 @@ $key = $arrayKey[8];	//3
 								var hour_current = temp_day_current.slice(temp_day_current.indexOf(":")+1, temp_day_current.length+1 );
 								var day_hour_current = '<strong>'+ '<span style=" width:95px; display:block; float:left;">'+ day_current + '</span> <span>'+ hour_current + ''+ '</span>'+ '</strong>'
 							}
-						}						
+						}
 				}
 					// var detail = place.opening_hours.weekday_text.Monday;
 					// sdt
@@ -464,7 +480,7 @@ $key = $arrayKey[8];	//3
 					else
 					{
 						var adress = place.formatted_address;
-					}	
+					}
 					// đánh giá trung bình
 					if(typeof place.rating == 'undefined')
 					{
@@ -474,7 +490,7 @@ $key = $arrayKey[8];	//3
 					{
 						var rate_average = place.rating;
 					}
-					
+
 					// review
 					if(typeof place.reviews == 'undefined')
 					{
@@ -499,58 +515,32 @@ $key = $arrayKey[8];	//3
 					// alert(text_comment[3]);
 				}
 
+
+    }
+
+
+//change item select box
+		$('select').on('change', function() {
+			if(this.value == 'near'){
+				document.getElementById('tenvitri').value = '<?php echo $ogrigin; ?>';
+				document.getElementById('vitri').value = '<?php echo $vitri; ?>';
+				document.getElementById('keyword').value = '<?php echo $keyword; ?>';
+				document.getElementById('radius_id').value = '<?php echo $radius/1000; ?>';
+				document.getElementById('checkType').value = 'distance';
+				document.getElementById('timkiem').submit();
+			}if(this.value == 'prioritize'){
+
+				document.getElementById('tenvitri').value = '<?php echo $ogrigin; ?>';
+				document.getElementById('vitri').value = '<?php echo $vitri; ?>';
+				document.getElementById('keyword').value = '<?php echo $keyword; ?>';
+				document.getElementById('radius_id').value = '<?php echo $radius/1000; ?>';
+				document.getElementById('checkType').value = 'prominence';
+				document.getElementById('timkiem').submit();
 			}
-				$("#myModal").on("shown.bs.modal", function () {  //Tell what to do on modal open
-					var content_header = ""
-					+ "<div class='row'>"
-					+ "<div class='col-md-12'>"
-					+ "<img height='200px' width='100%' src='" + ref_photo+ "'" + ">" 
-					+ "</div>"
-					+ "</div>"
-					+ "<div class='row'>"
-					+ "<div class=' col-md-12'>"
-					+ "<h3 class='text-center'>" +name_place +"</h3>"
-					+ "</div"
-					+ "</div";
-
-					var content_body = ""
-					+ "<div class='row'>"
-					+ "<div class='col-md-12'>"
-					+ '<i class="fa fa-phone" aria-hidden="true" style="margin-right: 10px"></i>'+ phone_number
-					+ "</div>"
-					+ "</div>"
-					+ "<div class='row'>"
-					+ "<div class='col-md-12'>"
-					+ '<i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px; "></i>'+ adress
-					+ "</div>"
-					+ "</div>"
-					+ "<div class='row'>"
-					+ "<div class='col-md-12'>"
-					+ '<i class="fa fa-clock-o" aria-hidden="true" style="margin-right: 10px; float:left"></i>' + '<span style=" margin-right: 10px;; float:left"> Hôm nay: </span>' +day_hour_current
-					+ "</div>"
-					+ "</div>"
-					+"<div class='row'>"
-					+ "<div class='col-md-12'>"
-					+'<a  style="margin-left: 93px;" data-toggle="collapse" data-target="#demo">Chi tiết trong tuần</a>'
-					+'<span class="caret"></span>'
-					+'<div id="demo" class="collapse" style="margin-left: 93px;">'
-					+ hour_daily
-					+'</div>'
-					+ "</div>"
-					+ "</div>"
-
-					$(this).find('.modal-title').html(content_header);
-					$(this).find('.modal-body').html(content_body);
-        		}).modal('show'); //open the modal once done
-
-			}
-			// alert(123);
-
 		});
-	});
+
 
 </script>
 <!-- XONG PHẦN CONTENT -->
 @endsection
 
-{{-- <h1 style="margin-left: 5px"></h1> --}}
