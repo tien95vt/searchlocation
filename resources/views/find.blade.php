@@ -4,8 +4,8 @@
 <!-- END PHẦN HEADER -->
 <!-- BẮT ĐẦU PHẦN CONTENT -->
 <?php
-$arrayKey = array("AIzaSyAjsicLOeEsQfdF-rcc9_QBrxP7PCZrz58", "AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU", "AIzaSyDM59TDUtqoRyJ2sSdGXf97qCfLvfvB6uk", "AIzaSyD09hk8tNuDaJT7JdDu7NYLjSMdxdAt_6U", "AIzaSyBdG28rxjxq78b9162r9YpfINWyzGefSys", "AIzaSyA_cKC7YzUfwQvC7nVYMgB8Gcupt5BAE8k", "AIzaSyB_Ae2YS9wkPDGGA3YpYX5Q7Sxlv-9npp0");	//6
-$key = $arrayKey[0];	//3
+$arrayKey = array("AIzaSyAjsicLOeEsQfdF-rcc9_QBrxP7PCZrz58", "AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU", "AIzaSyDM59TDUtqoRyJ2sSdGXf97qCfLvfvB6uk", "AIzaSyD09hk8tNuDaJT7JdDu7NYLjSMdxdAt_6U", "AIzaSyBdG28rxjxq78b9162r9YpfINWyzGefSys", "AIzaSyA_cKC7YzUfwQvC7nVYMgB8Gcupt5BAE8k", "AIzaSyB_Ae2YS9wkPDGGA3YpYX5Q7Sxlv-9npp0", "AIzaSyCzQcMYA-9FZO4pBZAT7pw1d3U2Y75sMtE", "AIzaSyAzTaGh_nkps4V7mQ2GjFqdwRwU8Ypj3xs");   //8
+$key = $arrayKey[8];	//3
 
 ?>
 
@@ -129,6 +129,7 @@ $key = $arrayKey[0];	//3
 	</div>
 </header>
 <section class="content-container">
+
 	<div class="small-gap row">
 		<div class="col-md-12">
 			<div id="menu-right" class="col-md-7 sidebar-right" style="padding-top: 150px;" >
@@ -168,12 +169,15 @@ $key = $arrayKey[0];	//3
 							array_push($latLongArray, $arr);
 							?>
 							
+
+
 							<div class="col-md-4 size-product">
 								<div class="product-item" id="{{$end}}" >
 									<div class="pi-img-wrapper">
 										<img src="<?php echo $photo; ?>" width="100%" height="150px" alt="Cửa Hàng Bánh Ngọt" style="overflow: hidden;">
 										<div>
 											<a href="direct/{{$vitri}}/{{$end}}/{{$ogrigin}}/{{$value['name']}}" class="btn">Chỉ đường</a>
+											<a class="btn btn_detail" id="{{$value['place_id']}}" ref_photo="{{$photo}}" name_place="{{$value['name']}}">Chi tiết</a>
 										</div>
 									</div>
 									
@@ -204,6 +208,28 @@ $key = $arrayKey[0];	//3
 				</div>
 
 				<!-- End phan side -->
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-body">
+					<p>Some text in the modal.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
 			</div>
 
 		</div>
@@ -263,7 +289,7 @@ $key = $arrayKey[0];	//3
         	infowindow = new google.maps.InfoWindow();
 
         	google.maps.event.addListener(marker, 'mouseover', function () {
-        		 this.setIcon('../public/images/red.png');
+        		this.setIcon('../public/images/red.png');
         	});
         	google.maps.event.addListener(marker, 'mouseout', function () {
         		this.setIcon('../public/images/green.png');
@@ -332,11 +358,11 @@ $key = $arrayKey[0];	//3
         });
         //set infowindow markercenter
         google.maps.event.addListener(markerCenter, 'click', function () {
-        		infowindow.setContent('<div class="changeclose"><div class="gm-style-iw" style="border:none;padding:10px;">'+ '{{$ogrigin}}' +'</div></div>');
-        		infowindow.setOptions({maxWidth:250});
-        		infowindow.open(map, this);
-        	});
-        	
+        	infowindow.setContent('<div class="changeclose"><div class="gm-style-iw" style="border:none;padding:10px;">'+ '{{$ogrigin}}' +'</div></div>');
+        	infowindow.setOptions({maxWidth:250});
+        	infowindow.open(map, this);
+        });
+
 
         // Array Marker
         var markerArray ={};
@@ -366,14 +392,165 @@ $key = $arrayKey[0];	//3
         	});   	
 
         }
-
-        
-
-
     }
 
-    
+	// place detail
+	$(document).ready(function() {
+		$(".btn_detail").click(function(){
+			var place_id = $(this).attr('id');
+			var ref_photo = $(this).attr('ref_photo');
+			var name_place = $(this).attr('name_place');
+			// alert(ref_photo);
+			var request = {
+				placeId: place_id
+			};
+			var service = new google.maps.places.PlacesService(map);
+			service.getDetails(request, callback);
+			function callback(place, status){
+				if (status == google.maps.places.PlacesServiceStatus.OK) {
+					// open_hour gio mở cửa
+					if(typeof place.opening_hours == 'undefined')
+					{
+						hour_daily = "";
+					}
+					else
+					{
+						var d = new Date();
+						var n = d.getDay(); //n = thứ trong tuần . 0 -> sunday
+						if(n == 0)
+						{
+							n = 6; //sunday ->array
+						}
+						else
+						{
+							n = n - 1;
+						}
+						var open_hour = place.opening_hours.weekday_text;
+						var hour_daily = "";
+						for(var i=0; i<open_hour.length; i++)
+						{
+							var temp_day = place.opening_hours.weekday_text[i];
+							// thứ
+							var day = temp_day.slice(0, temp_day.indexOf(":"));
+							// giờ
+							var hour = temp_day.slice(temp_day.indexOf(":")+1, temp_day.length+1 );
+							// thứ + giờ hoàn chỉnh
+							hour_daily = hour_daily + '<span style=" width:95px; display:block; float:left;">'+ day + '</span> <span>'+ hour + ''+ '</span>' + '<br>';
+							if(i == n)	//Lấy thời gian của thú hiện tại
+							{
+								var temp_day_current = place.opening_hours.weekday_text[n];
+								var day_current = temp_day_current.slice(0, temp_day_current.indexOf(":"));
+								// giờ
+								var hour_current = temp_day_current.slice(temp_day_current.indexOf(":")+1, temp_day_current.length+1 );
+								var day_hour_current = '<strong>'+ '<span style=" width:95px; display:block; float:left;">'+ day_current + '</span> <span>'+ hour_current + ''+ '</span>'+ '</strong>'
+							}
+						}						
+				}
+					// var detail = place.opening_hours.weekday_text.Monday;
+					// sdt
+					if(typeof place.international_phone_number == 'undefined')
+					{
+						phone_number = "";
+					}
+					else
+					{
+						var phone_number = place.international_phone_number;
+					}
+					// địa chỉ
+					if(typeof place.formatted_address == 'undefined')
+					{
+						adress = "";
+					}
+					else
+					{
+						var adress = place.formatted_address;
+					}	
+					// đánh giá trung bình
+					if(typeof place.rating == 'undefined')
+					{
+						rate_average = "";
+					}
+					else
+					{
+						var rate_average = place.rating;
+					}
+					
+					// review
+					if(typeof place.reviews == 'undefined')
+					{
+						review = "Không có bất cứ nhận xét nào";
+					}
+					else
+					{
+						var reviewCount = Object.keys(place.reviews).length;
+						var name = [];
+						var avatar = [];
+						var rate = [];
+						var relative_time_description = [];
+						var text_comment = [];
+						for(var i=0; i<reviewCount; i++)
+						{
+							name[i] = place.reviews[i].author_name;
+							avatar[i] = place.reviews[i].profile_photo_url;
+							rate[i] = place.reviews[i].rating;
+							relative_time_description[i] = place.reviews[i].relative_time_description;
+							text_comment[i] = place.reviews[i].text;
+						}
+					// alert(text_comment[3]);
+				}
+
+			}
+				$("#myModal").on("shown.bs.modal", function () {  //Tell what to do on modal open
+					var content_header = ""
+					+ "<div class='row'>"
+					+ "<div class='col-md-12'>"
+					+ "<img height='200px' width='100%' src='" + ref_photo+ "'" + ">" 
+					+ "</div>"
+					+ "</div>"
+					+ "<div class='row'>"
+					+ "<div class=' col-md-12'>"
+					+ "<h3 class='text-center'>" +name_place +"</h3>"
+					+ "</div"
+					+ "</div";
+
+					var content_body = ""
+					+ "<div class='row'>"
+					+ "<div class='col-md-12'>"
+					+ '<i class="fa fa-phone" aria-hidden="true" style="margin-right: 10px"></i>'+ phone_number
+					+ "</div>"
+					+ "</div>"
+					+ "<div class='row'>"
+					+ "<div class='col-md-12'>"
+					+ '<i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px; "></i>'+ adress
+					+ "</div>"
+					+ "</div>"
+					+ "<div class='row'>"
+					+ "<div class='col-md-12'>"
+					+ '<i class="fa fa-clock-o" aria-hidden="true" style="margin-right: 10px; float:left"></i>' + '<span style=" margin-right: 10px;; float:left"> Hôm nay: </span>' +day_hour_current
+					+ "</div>"
+					+ "</div>"
+					+"<div class='row'>"
+					+ "<div class='col-md-12'>"
+					+'<a  style="margin-left: 93px;" data-toggle="collapse" data-target="#demo">Chi tiết trong tuần</a>'
+					+'<span class="caret"></span>'
+					+'<div id="demo" class="collapse" style="margin-left: 93px;">'
+					+ hour_daily
+					+'</div>'
+					+ "</div>"
+					+ "</div>"
+
+					$(this).find('.modal-title').html(content_header);
+					$(this).find('.modal-body').html(content_body);
+        		}).modal('show'); //open the modal once done
+
+			}
+			// alert(123);
+
+		});
+	});
+
 </script>
 <!-- XONG PHẦN CONTENT -->
 @endsection
 
+{{-- <h1 style="margin-left: 5px"></h1> --}}

@@ -27,6 +27,7 @@ class HomeController extends Controller
 
     public function getFind(Request $request)
     {
+        // dd($request->something);
         $keyword = $request->keyword;
         $vitri = $request->vitri;
         $radius = $request->radius_name;
@@ -39,6 +40,7 @@ class HomeController extends Controller
         $vitri2= str_replace(')','',$vitri1);
         $vitri3=str_replace(' ','',$vitri2);
         // dd($vitri3);
+        // $vitri3="10.867114,106.803272";
         $ogrigin =str_replace('/','-',$request->positionName);
         // Hiển thị các bài viết mới
         // $post = post::orderBy('created_at', 'desc')->take(3)->get();

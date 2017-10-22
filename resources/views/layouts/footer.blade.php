@@ -138,12 +138,13 @@ function initialize() {
 }
 function codeLatLng(lat, lng) {
 	var latlng = new google.maps.LatLng(lat, lng);
+	// alert(latlng);
 	geocoder.geocode({'latLng': latlng}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
       // console.log(results)
       if (results[1]) {
          //formatted address
-         // alert(results[0].formatted_address)
+         // alert(results[0].formatted_address);
         //find country name
         for (var i=0; i<results[0].address_components.length; i++) {
         	for (var b=0;b<results[0].address_components[i].types.length;b++) {
@@ -157,6 +158,7 @@ function codeLatLng(lat, lng) {
         $('#getPosition').click(function(){
         	$('#tenvitri').val(results[0].formatted_address);
         	// $('#vitri').val(lat +','+lng);
+        	// alert(lat +','+lng);
         });
         document.getElementById('search').addEventListener('click',function(){
         	if( testRadius( $("#radius_id").val() ) == 1)
@@ -166,10 +168,10 @@ function codeLatLng(lat, lng) {
         });
         //increment khi bam nut
         document.getElementById('search_radius').addEventListener('click',function(){
-        		var value = parseFloat(document.getElementById('radius_id').value, 10);
-			    value = isNaN(value) ? 0 : value;
-			    value+=0.5;
-			    document.getElementById('radius_id').value = value;
+        	var value = parseFloat(document.getElementById('radius_id').value, 10);
+        	value = isNaN(value) ? 0 : value;
+        	value+=0.5;
+        	document.getElementById('radius_id').value = value;
         });
         
         document.getElementById('keyword').onkeydown = function(e){
