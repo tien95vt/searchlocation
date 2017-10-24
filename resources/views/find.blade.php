@@ -1,17 +1,16 @@
 @extends('layouts.master')
 @section('content')
-
 <!-- END PHẦN HEADER -->
 <!-- BẮT ĐẦU PHẦN CONTENT -->
 <?php
-	 $arrayKey = array("AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU", "AIzaSyAjsicLOeEsQfdF-rcc9_QBrxP7PCZrz58","AIzaSyD09hk8tNuDaJT7JdDu7NYLjSMdxdAt_6U", "AIzaSyDM59TDUtqoRyJ2sSdGXf97qCfLvfvB6uk",  "AIzaSyBdG28rxjxq78b9162r9YpfINWyzGefSys", "AIzaSyA_cKC7YzUfwQvC7nVYMgB8Gcupt5BAE8k", "AIzaSyB_Ae2YS9wkPDGGA3YpYX5Q7Sxlv-9npp0","AIzaSyCzQcMYA-9FZO4pBZAT7pw1d3U2Y75sMtE");   //7
-
-        	$key = $arrayKey[7];
+	 $arrayKey = array("AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU", "AIzaSyAjsicLOeEsQfdF-rcc9_QBrxP7PCZrz58","AIzaSyD09hk8tNuDaJT7JdDu7NYLjSMdxdAt_6U", "AIzaSyDM59TDUtqoRyJ2sSdGXf97qCfLvfvB6uk",  "AIzaSyBdG28rxjxq78b9162r9YpfINWyzGefSys", "AIzaSyA_cKC7YzUfwQvC7nVYMgB8Gcupt5BAE8k", "AIzaSyB_Ae2YS9wkPDGGA3YpYX5Q7Sxlv-9npp0","AIzaSyCzQcMYA-9FZO4pBZAT7pw1d3U2Y75sMtE","AIzaSyAzTaGh_nkps4V7mQ2GjFqdwRwU8Ypj3xs");   //9
+       
+        	$key = $arrayKey[2];
 
 ?>
 
 
-
+ 
 
 <header class="header" style="position: fixed; box-shadow: none;">
 	<style>
@@ -23,7 +22,7 @@
 		
 	</style>
 
-
+	
 
 	<div class="row" style="background-color: #ECF0F1;background-size: cover;background-repeat: no-repeat;">
 		<div class="col-md-12" style="z-index: 200">
@@ -147,11 +146,11 @@
 					<?php
 					//check type select box
 					if ($checkType == 'distance') {
-						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&rankby=distance'.'&keyword='.$keyword.'&key='.$key;
-					}else{
-						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&radius='.$radius.'&rankby=prominence'.'&keyword='.$keyword.'&key='.$key;
+						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&rankby=distance'.'&keyword='.$keyword.'&key='.$key;	
+					}else{						
+						$web = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$vitri.'&radius='.$radius.'&rankby=prominence'.'&keyword='.$keyword.'&key='.$key;	
 					}//echo $web;
-
+					
 						$web = str_replace(' ','-',$web);
 						error_reporting(0);
 						  // thực thi file_get_contents
@@ -229,12 +228,10 @@
 
 		</div>
 	</div>
-
-
+	
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
-
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
@@ -248,10 +245,9 @@
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
-
 		</div>
 	</div>
-
+	
 </section>
 
 {{-- Load map sau khi tìm kiếm --}}
@@ -410,7 +406,34 @@
 
         }
 
-	// place detail
+        
+
+
+    }
+
+
+//change item select box
+		$('select').on('change', function() {
+			if(this.value == 'near'){	
+				document.getElementById('tenvitri').value = '<?php echo $ogrigin; ?>';	
+				document.getElementById('vitri').value = '<?php echo $vitri; ?>';
+				document.getElementById('keyword').value = '<?php echo $keyword; ?>';
+				document.getElementById('radius_id').value = '<?php echo $radius/1000; ?>';
+				document.getElementById('checkType').value = 'distance';		  	
+				document.getElementById('timkiem').submit(); 	
+			}if(this.value == 'prioritize'){
+
+				document.getElementById('tenvitri').value = '<?php echo $ogrigin; ?>';
+				document.getElementById('vitri').value = '<?php echo $vitri; ?>';
+				document.getElementById('keyword').value = '<?php echo $keyword; ?>';
+				document.getElementById('radius_id').value = '<?php echo $radius/1000; ?>';
+				document.getElementById('checkType').value = 'prominence';	
+				document.getElementById('timkiem').submit(); 
+			}
+		});
+
+
+		// place detail
 	$(document).ready(function() {
 		$(".btn_detail").click(function(){
 			var place_id = $(this).attr('id');
@@ -427,7 +450,14 @@
 					// open_hour gio mở cửa
 					if(typeof place.opening_hours == 'undefined')
 					{
-						hour_daily = "";
+						// giờ trong tuần
+						var hour_daily = "";
+						// Giờ hnay
+						var day_hour_current = "";
+						// nút collapse
+						var detail_hour_collapse = "";
+						// chữ hôm nay
+						var today_text ="";
 					}
 					else
 					{
@@ -458,9 +488,13 @@
 								var day_current = temp_day_current.slice(0, temp_day_current.indexOf(":"));
 								// giờ
 								var hour_current = temp_day_current.slice(temp_day_current.indexOf(":")+1, temp_day_current.length+1 );
-								var day_hour_current = '<strong>'+ '<span style=" width:95px; display:block; float:left;">'+ day_current + '</span> <span>'+ hour_current + ''+ '</span>'+ '</strong>'
+								var day_hour_current = '<strong>'+ '<span style=" width:95px; display:block; float:left;">'+ day_current + '</span> <span>'+ hour_current + ''+ '</span>'+ '</strong>';
+								// nút collapse
+								var detail_hour_collapse = '<a  style="margin-left: 93px;" data-toggle="collapse" data-target="#demo">Chi tiết trong tuần</a>'
+									+'<span class="caret"></span>';
+								var today_text = '<span style=" margin-right: 10px;; float:left"> Hôm nay: </span>';
 							}
-						}
+						}						
 				}
 					// var detail = place.opening_hours.weekday_text.Monday;
 					// sdt
@@ -480,66 +514,156 @@
 					else
 					{
 						var adress = place.formatted_address;
-					}
+					}	
 					// đánh giá trung bình
 					if(typeof place.rating == 'undefined')
 					{
-						rate_average = "";
+						rate_image = "";
 					}
 					else
 					{
 						var rate_average = place.rating;
+						// Làm tròn
+						var round_rate = Math.round(rate_average);
+						var rate_image = "";
+						for(var r=0; r<round_rate; r++)
+						{
+							rate_image = rate_image+ '<span class="fa fa-star checked" style="color: orange"></span>'
+						}
+						for(var r=5; r>round_rate; r--)
+						{
+							rate_image = rate_image+ '<span class="fa fa-star checked"></span>'
+						}
 					}
-
+					
 					// review
 					if(typeof place.reviews == 'undefined')
 					{
-						review = "Không có bất cứ nhận xét nào";
+						var review = "Không có bất cứ nhận xét nào";
 					}
 					else
 					{
 						var reviewCount = Object.keys(place.reviews).length;
-						var name = [];
-						var avatar = [];
-						var rate = [];
-						var relative_time_description = [];
-						var text_comment = [];
-						for(var i=0; i<reviewCount; i++)
+						// alert(typeof reviewCount)
+						var review = "Có "+ reviewCount.toString() +" nhận xét từ google. "+ '<img src="./images/google.jpg" alt="GG" style="width: 20px; height: 20px;">'
+							+'<div class="row">'
+							+ "<div class='col-md-12'>"
+							+'<a data-toggle="collapse" data-target="#comment_collase">Xem Chi tiết</a>'
+							+'<span class="caret"></span>'
+							+'<div id="comment_collase" class="collapse">'
+			
+							// Phần bình luận
+							var name = [];
+							var avatar = [];
+							var rate = [];
+							var relative_time_description = [];
+							var text_comment = [];
+							for(var i=0; i<reviewCount; i++)
+							{
+								name[i] = place.reviews[i].author_name;
+								avatar[i] = place.reviews[i].profile_photo_url;
+								rate[i] = place.reviews[i].rating;
+								relative_time_description[i] = place.reviews[i].relative_time_description;
+								text_comment[i] = place.reviews[i].text;
+								// Phần bình luận 1
+								review = review + "" 
+								+'<div class="col-sm-12">'
+				+'<div class="panel panel-white post panel-shadow">'
+						+'<div class="post-heading">'
+						+'<div class="pull-left image">'
+							+'<img src="'+ avatar[i]+'" width="60px" height="60px" alt="no_pic">'
+						+'</div>'
+						+'<div class="pull-left meta">'
+							+'<div class="title h5">'
+								+'<a href="#"><b>'+ name[i]+ '</b></a>'
+							+'</div>'
+							+'<h6 class="text-muted time">'+ relative_time_description[i]+'</h6>'
+						+'</div>'
+					+'</div> '
+					+'<div class="post-description"> '
+						for(var tmp_r = 0; tmp_r<rate[i]; tmp_r++)
 						{
-							name[i] = place.reviews[i].author_name;
-							avatar[i] = place.reviews[i].profile_photo_url;
-							rate[i] = place.reviews[i].rating;
-							relative_time_description[i] = place.reviews[i].relative_time_description;
-							text_comment[i] = place.reviews[i].text;
+							review = review +'<span class="fa fa-star checked" style="color: orange"></span>'
 						}
-					// alert(text_comment[3]);
+						for(var tmp_r = 5; tmp_r>rate[i]; tmp_r--)
+						{
+							review = review +'<span class="fa fa-star checked" ></span>'
+						}
+						review = review 
+						+'<p>'+ text_comment[i]+ '</p>'
+					+'</div>'
+
+					+'</div>'
+				+'</div>'
+			// End Phần bình luận 1
+							}
+							// collapse
+							review = review+'</div>'
+							+ "</div>"
+							+ "</div>";
 				}
-
-
-    }
-
-
-//change item select box
-		$('select').on('change', function() {
-			if(this.value == 'near'){
-				document.getElementById('tenvitri').value = '<?php echo $ogrigin; ?>';
-				document.getElementById('vitri').value = '<?php echo $vitri; ?>';
-				document.getElementById('keyword').value = '<?php echo $keyword; ?>';
-				document.getElementById('radius_id').value = '<?php echo $radius/1000; ?>';
-				document.getElementById('checkType').value = 'distance';
-				document.getElementById('timkiem').submit();
-			}if(this.value == 'prioritize'){
-
-				document.getElementById('tenvitri').value = '<?php echo $ogrigin; ?>';
-				document.getElementById('vitri').value = '<?php echo $vitri; ?>';
-				document.getElementById('keyword').value = '<?php echo $keyword; ?>';
-				document.getElementById('radius_id').value = '<?php echo $radius/1000; ?>';
-				document.getElementById('checkType').value = 'prominence';
-				document.getElementById('timkiem').submit();
 			}
+				$("#myModal").on("shown.bs.modal", function () {  //Tell what to do on modal open
+					var content_header = ""
+					+ "<div class='row'>"
+					+ "<div class='col-md-12'>"
+					+ "<img height='200px' width='100%' src='" + ref_photo+ "'" + ">" 
+					+ "</div>"
+					+ "</div>"
+					+ "<div class='row'>"
+					+ "<div class=' col-md-12'>"
+					+ "<h3 class='text-center'>" +name_place +"</h3>"
+					+ "</div"
+					+ "</div"
+					+ "<div class='row'>"
+					+ "<div class=' col-md-12'>"
+					+ "<h3 style='margin-top: 0px;' class='text-center'>" +rate_image +"</h3>"
+					+ "</div"
+					+ "</div";
+					var content_body = ""
+					+ "<div class='row'>"
+					+ "<div class='col-md-12'>"
+					+ '<i class="fa fa-phone" aria-hidden="true" style="margin-right: 10px"></i>'+ phone_number
+					+ "</div>"
+					+ "</div>"
+					+ "<div class='row'>"
+					+ "<div class='col-md-12'>"
+					+ '<i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px; "></i>'+ adress
+					+ "</div>"
+					+ "</div>"
+					+ "<div class='row'>"
+					+ "<div class='col-md-12'>"
+					+ '<i class="fa fa-clock-o" aria-hidden="true" style="margin-right: 10px; float:left"></i>' 
+					+ today_text
+					+ day_hour_current
+					+ "</div>"
+					+ "</div>"
+					+"<div class='row'>"
+					+ "<div class='col-md-12'>"
+					+detail_hour_collapse
+					+'<div id="demo" class="collapse" style="margin-left: 93px;">'
+					+ hour_daily
+					+'</div>'
+					+ "</div>"
+					+ "</div>"
+					+ "<div class='row'>"
+					+ "<div class='col-md-12'>"
+					+ '<i class="fa fa-commenting-o" aria-hidden="true" style="margin-right: 10px"></i>'+ review
+					+ "</div>"
+					+ "</div>"
+					$(this).find('.modal-title').html(content_header);
+					$(this).find('.modal-body').html(content_body);
+        		}).modal('show'); //open the modal once done
+
+			}
+			// alert(123);
+
 		});
+	});
+	
 
 
+    
 </script>
 <!-- XONG PHẦN CONTENT -->
 @endsection
