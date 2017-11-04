@@ -93,6 +93,8 @@
 								<div class="input-group border-div">
 									<input type="text" style="height:60px;font-size: 18px;" class="customtextbox form-control" value="{{old('positionName')}}" name="positionName" id="tenvitri" placeholder="Vị trí">
 									<input type="hidden" id="vitri"  name="vitri">
+									{{-- check click lấy vị trí hiện tại --}}
+									<input type="hidden" id="check_click"  name="check_click">
 									<span class="input-group-btn">
 										<button style="width: 60px; height:60px;font-size: 18px;" class="btn btn-secondary custombtn" id="getPosition" type="button"><span class="glyphicon glyphicon-map-marker"></span></button>
 									</span>
@@ -199,9 +201,9 @@
 	<h1 class="text-center">DANH SÁCH CÁC BÀI POST</h1>	
 	<div class="panel-group">
 		{{-- Post nhà hàng --}}
-		<div class="panel panel-primary" style="margin: 20px;">
-			<div class="panel-heading">NHÀ HÀNG </div>
-			<div class="panel-body">
+		<div class="panel panel-primary " style="margin: 20px;">
+			<div class="panel-heading page1_focus">NHÀ HÀNG </div>
+			<div class="panel-body content_ajax_pageA">
 				@php $breakRow = 1; @endphp
 				<div class="row" style="margin: 5px;">
 					@foreach($postNhahang as $valuePostNhaHang)
@@ -246,12 +248,12 @@
 					@php $breakRow++ ; @endphp
 					@endforeach
 				</div>
-				<div class="text-center">{{$postNhahang->appends(array_except(Request::query(), 'page'))->links()}}</div>
+				<div class="text-center pageA">{{$postNhahang->appends(array_except(Request::query(), 'page'))->links()}}</div>
 			</div>
 		</div>
 		<div class="panel panel-primary" style="margin: 20px;">
 			<div class="panel-heading">KHÁCH SẠN</div>
-			<div class="panel-body">
+			<div class="panel-body content_ajax_pageB">
 				@php $breakRow = 0; @endphp
 				<div class="row" style="margin: 5px;">
 					@foreach($postKhachSan as $valuePostKhachSan)
@@ -296,57 +298,53 @@
 					@php $breakRow++ ; @endphp
 					@endforeach
 				</div>
-				<div class="text-center">{{$postKhachSan->appends(array_except(Request::query(), 'other_page'))->links()}}</div>
+				<div class="text-center pageB">{{$postKhachSan->appends(array_except(Request::query(), 'other_page'))->links()}}</div>
 			</div>
 		</div>
 
-		{{-- carousel --}}
-		{{-- <div class="panel panel-primary"  style="margin: 20px;">
-			<div class="panel-heading">Panel Header</div>
-			<div class="panel-body">
-				<div id="carousel-2"  class="carousel slide col-md-12" data-ride="carousel" data-type="multi" data-interval="10000" id="myCarousel">
-					<div class="carousel-inner">
-						@foreach($postNhahang as $key => $valuePostNhaHang)
-						<div class="item {{ $key == 0 ? ' active' : '' }} " >
-							<div class="col-md-3 col-sm-6 col-xs-12">
-								<a href="#"><img  src="{{asset('upload/picture/post/'). '/'. $valuePostNhaHang->photo}}" class="img-responsive"></a>
-								<div class="text-center">AAAAA</div>
-							</div>
-						</div>
-						@endforeach
-					</div>
-					<a class="left carousel-control" href="#carousel-2" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-					<a class="right carousel-control" href="#carousel-2" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-				</div>
-			</div>
-		</div> --}}
-		{{-- end carousel --}}
 	</div>		
 
 
 
 </section>
 
-{{-- <script>
-	$(document).ready(function(){
-		$('.carousel[data-type="multi"] .item').each(function(){
-			var next = $(this).next();
-			if (!next.length) {
-				next = $(this).siblings(':first');
-			}
-			next.children(':first-child').clone().appendTo($(this));
-
-			for (var i=0; i<1; i++) {
-				next=next.next();
-				if (!next.length) {
-					next = $(this).siblings(':first');
-				}
-
-				next.children(':first-child').clone().appendTo($(this));
-			}
+<script>
+	// Ajax pagination A
+	$(document).ready(function() {
+		$(document).on('click', '.pageA .pagination a',function(e){
+			e.preventDefault();	//Dừng refresh page
+			var page = $(this).attr('href').split('pagination_a=')[1];
+			getProduct(page);
 		});
 	});
-</script> --}}
+
+	function getProduct(page){
+		$.ajax({
+			url: 'ajax/product_pageA?pagination_a='+ page //?pagination_a => Quan trọng
+		}).done(function(data){
+			// console.log(data);
+			$(".content_ajax_pageA").html(data);
+		});
+	}
+	// End Ajax pagination A
+	// // Ajax pagination B
+	$(document).ready(function() {
+		$(document).on('click', '.pageB .pagination a', function(e){
+			e.preventDefault();
+			var pageB = $(this).attr('href').split('pagination_b=')[1];
+			getProductPageB(pageB);
+		});
+	});
+	function getProductPageB(pageB){
+		$.ajax({
+			url: 'ajax/product_pageB?pagination_b='+ pageB	//?pagination_b => Quan trọng
+		}).done(function(data){
+			// console.log(data);
+			$(".content_ajax_pageB").html(data);
+		});
+	}
+	// End  Ajax pagination B
+</script>
 
 <!-- XONG PHẦN CONTENT -->
 @endsection

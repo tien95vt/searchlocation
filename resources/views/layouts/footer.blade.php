@@ -141,17 +141,21 @@
 			autoComplete();
 			var geocoder = new google.maps.Geocoder();
 			document.getElementById('keyword').addEventListener('focus', function() {
-				var address = document.getElementById('tenvitri').value;
-				geocoder.geocode({'address': address}, function(results, status) {
-            // if (status == google.maps.GeocoderStatus.OK) {
-            	if (status == 'OK') {
-            	// geometry.location  => Lấy lat và long 
-            	$('#vitri').val(results[0].geometry.location);
-              // alert(results[0].geometry.location);
-          } else {
-              // alert('Geocode was not successful for the following reason: ' + status);
-          }
-      });
+				if(document.getElementById('check_click').value == 0)
+				{
+					//  == 0 chưa nhấn nhấn lấy vị trí hiện tại
+					var address = document.getElementById('tenvitri').value;
+					geocoder.geocode({'address': address}, function(results, status) {
+					// if (status == google.maps.GeocoderStatus.OK) {
+					if (status == 'OK') {
+					// geometry.location  => Lấy lat và long 
+					$('#vitri').val(results[0].geometry.location);
+					// alert(results[0].geometry.location);
+					} else {
+					// alert('Geocode was not successful for the following reason: ' + status);
+					}
+					});
+				}
 			});
 		}
 	</script>
@@ -193,7 +197,13 @@
 	        }
 	        $('#getPosition').click(function(){
 	        	$('#tenvitri').val(results[0].formatted_address);
-	        	// $('#vitri').val(lat +','+lng);
+	        	// click_check = 1: đã click
+	        	$("#check_click").val(1);
+	        	$('#vitri').val(lat +','+lng);
+	        	$("#tenvitri").keypress(function(){
+	        		//click_check = 0;  đã nhập sửa vị trí rồi
+	        		$("#check_click").val(0);
+	        	});	
 	        });
 
 	        document.getElementById('search').addEventListener('click',function(){

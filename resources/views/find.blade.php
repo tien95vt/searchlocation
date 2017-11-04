@@ -5,7 +5,7 @@
 <?php
 	 $arrayKey = array("AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU", "AIzaSyAjsicLOeEsQfdF-rcc9_QBrxP7PCZrz58","AIzaSyD09hk8tNuDaJT7JdDu7NYLjSMdxdAt_6U", "AIzaSyDM59TDUtqoRyJ2sSdGXf97qCfLvfvB6uk",  "AIzaSyBdG28rxjxq78b9162r9YpfINWyzGefSys", "AIzaSyA_cKC7YzUfwQvC7nVYMgB8Gcupt5BAE8k", "AIzaSyB_Ae2YS9wkPDGGA3YpYX5Q7Sxlv-9npp0","AIzaSyCzQcMYA-9FZO4pBZAT7pw1d3U2Y75sMtE","AIzaSyAzTaGh_nkps4V7mQ2GjFqdwRwU8Ypj3xs");   //9
        
-        	$key = $arrayKey[2];
+        	$key = $arrayKey[4];
 
 ?>
 
@@ -93,6 +93,8 @@
 								<div style="border: 3px solid rgba(0, 0, 0, .1);" class="input-group">
 									<input type="text" class="customtextbox form-control" value="{{old('positionName')}}" name="positionName" id="tenvitri" placeholder="<?php if($ogrigin != null) echo $ogrigin; else echo "Tìm kiếm..."; ?>"">
 									<input type="hidden" id="vitri"  name="vitri">
+									{{-- check click lấy vị trí hiện tại --}}
+									<input type="hidden" id="check_click"  name="check_click">
 									<input type="hidden" id="checkType"  name="checkType">
 									<span class="input-group-btn">
 										<button style="background-color: #317E8C" class="btn btn-secondary custombtn" id="getPosition" type="button"><span class="glyphicon glyphicon-map-marker"  style="color: #fff"></span></button>
@@ -102,7 +104,7 @@
 
 							<div class="search_radius col-sm-3 col-xs-12 col-md-3">
 								<div style="border: 3px solid rgba(0, 0, 0, .1);" class="input-group">
-									<input type="number" class="customtextbox form-control" value="" name="radius_name" placeholder="<?php if($ogrigin != null) echo $radius/1000; else echo "Bán kính cần tìm (km)..."; ?>" min="0.5" max="20" step="0.5" id="radius_id">
+									<input type="number" class="customtextbox form-control" value="" name="radius_name" placeholder="<?php if($ogrigin != null) echo $radius/1000; else echo "Bán kính cần tìm (km)..."; ?>" min="0.5" max="50" step="0.5" id="radius_id">
 									<span class="input-group-btn">
 										<button style="background-color: #317E8C" class="btn btn-secondary custombtn" type="button" id="search_radius"><span class="glyphicon glyphicon-transfer" style="color: #fff"></span></button>
 									</span>
@@ -189,7 +191,7 @@
 							<div class="col-md-4 size-product">
 								<div class="product-item" id="{{$end}}" >
 									<div class="pi-img-wrapper">
-										<img src="<?php echo $photo; ?>" width="100%" height="150px" alt="Cửa Hàng Bánh Ngọt" style="overflow: hidden;">
+										<img src="<?php echo $photo; ?>" width="100%" height="150px" alt="Không thể hiện thị hình" style="overflow: hidden;">
 										<div>
 											<a href="direct/{{$vitri}}/{{$end}}/{{$ogrigin}}/{{$value['name']}}" class="btn">Chỉ đường</a>
 											<a class="btn btn_detail" id="{{$value['place_id']}}" ref_photo="{{$photo}}" name_place="{{$value['name']}}">Chi tiết</a>

@@ -25,6 +25,19 @@ class HomeController extends Controller
         return view('index', ['postNhahang' => $postNhahang, 'postKhachSan' => $postKhachSan ]);
     }
 
+    // Ajax pagination Page AAAAAAA
+    public function ajaxPaginationA($pagination_a = '1')
+    {
+         $postNhahang = category::find(7)->post()->paginate(4, ['*'], 'pagination_a');
+        return view('view_ajax_index_pageA', ['postNhahang'=>$postNhahang]);
+    }
+     // Ajax pagination Page BBBBBB
+    public function ajaxPaginationB($pagination_b = '1')
+    {
+        $postKhachSan = category::find(8)->post()->paginate(1, ['*'], 'pagination_b');
+        return view('view_ajax_index_pageB', ['postKhachSan'=>$postKhachSan]);
+    }
+
     public function getFind(Request $request)
     {
         // dd($request->something);
