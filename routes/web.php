@@ -6,7 +6,7 @@ Route::get('/', function () {
 Route::get('index',"HomeController@getPosition")->name('getPosition');
 // Trang tìm kiếm
 Route::get('find', "HomeController@getFind")->name('getFind');
-Route::get('direct/{position}/{endposition}/{ogrigin}/{destination}',"HomeController@direct")->name('direct');
+Route::get('direct/{position}/{endposition}/{ogrigin}/{destination}/{travel_mode?}',"HomeController@direct")->name('direct');
 Route::get('move/{position}',"HomeController@directMove")->name('move');
 // ajax pagination_a idex  AAAAAA
 Route::get('ajax/product_pageA/{page?}', "HomeController@ajaxPaginationA");

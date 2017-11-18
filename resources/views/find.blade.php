@@ -43,8 +43,7 @@
 					</div>
 					
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<d
-					v class="collapse navbar-collapse navbar-ex1-collapse">
+					<div class="collapse navbar-collapse navbar-ex1-collapse">
 					<ul class="nav navbar-nav">
 						<!-- <li><a href="#">Link</a></li> -->
 					</ul>

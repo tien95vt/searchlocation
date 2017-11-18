@@ -97,6 +97,10 @@
           width: auto;
         }
       }
+
+      .fix-menu{
+        position: fixed;
+      }
     </style>
   </head>
   <body>
@@ -122,7 +126,12 @@
           
           
         </div>
- 
+        {{-- begin chọn mode chỉ đường : drivnig, bus,... --}}
+        <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 10px">
+          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/DRIVING"><button class="btn btn-default" id="driving_id">DRIVING</button></a>
+          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/TRANSIT"><button class="btn btn-default" id="transit_id">BUS</button></a>
+        </div>
+        {{-- End chọn mode chỉ đường : drivnig, bus,... --}}
         <div id="right-panel"></div>
       </div>
 
@@ -166,11 +175,15 @@
         window.onload = onChangeHandler;
       }
 
+
       function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         directionsService.route({
           origin: '<?php echo $position; ?>',
           destination: '<?php echo $endposition; ?>',
-          travelMode: 'DRIVING'
+          travelMode: '<?php echo $travelMode; ?>',
+          // travelMode: 'DRIVING',
+          // provideRouteAlternatives: những đường thay thế
+          provideRouteAlternatives: true,
         }, function(response, status) {
           if (status === 'OK') {
             directionsDisplay.setDirections(response);

@@ -62,9 +62,10 @@ class HomeController extends Controller
         return view('find',['keyword'=>$keyword,'vitri'=>$vitri3,'ogrigin'=>$ogrigin, 'radius'=>$radius, 'checkType'=>$checkType]);
     }
 
-    public function direct($position="",$endposition="",$ogrigin="",$destination="")
+    public function direct($position="",$endposition="",$ogrigin="",$destination="", $travelMode = 'DRIVING')
     {
-        return view('direct',['position'=>$position,'endposition'=>$endposition,'ogrigin'=>$ogrigin,'destination'=>$destination]);
+        // dd($travelMode);
+        return view('direct',['position'=>$position,'endposition'=>$endposition,'ogrigin'=>$ogrigin,'destination'=>$destination, 'travelMode'=>$travelMode]);
     }
 
     public function directMove($position="")
