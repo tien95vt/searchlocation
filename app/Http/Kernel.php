@@ -59,5 +59,7 @@ class Kernel extends HttpKernel
 
         // Kiểm tra user login
         'user_login' => \App\Http\Middleware\UserLoginMiddleware::class,
+        // Kiểm tra quản trị viên
+        'test_admin' => \App\Http\Middleware\TestAdminMiddleware::class,
     ];
 }

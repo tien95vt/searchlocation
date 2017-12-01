@@ -37,33 +37,8 @@
 							<!-- <li><a href="#">Link</a></li> -->
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							{{-- Begin thông tin user --}}
-							@if(Auth::check())
-							{{-- biến $user --}}
-							@php
-							$user = App\User::find(Auth::user()->id);
-							@endphp
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="img-circle img-profile-sm"  src="{{asset('upload/picture/profile/').'/'.$user->profile->avatar}}" alt=""><span style="padding-left: 0.5em"></span>{{Auth::user()->name}} <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li>
-										<a href="{{asset('profile')}}/{{Auth::user()->id}}"><i class="fa fa-user" aria-hidden="true"></i><span style="padding-left: 1.5em">Thông Tin Cá Nhân</span></a>
-									</li>
-
-									<li>
-										<a href="{{asset('profile')}}/{{Auth::user()->id}}"><i class="fa fa-cog" aria-hidden="true"></i><span style="padding-left: 1.5em">Cập Nhật Thông Tin Cá Nhân</span></a>
-									</li>
-
-									<li><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="padding-left: 1.5em">Đăng xuất</span></a></li>
-								</ul>
-							</li>
-							<li style="margin-top: 10px;"><button style="background-color: #317E8C;" class="btn"><a href="add_post" style="color:white">Đăng Bài</a></button></li>
-							@else
-							{{-- End thông tin user --}}
-							<li><a style="color:white" href="register_form">Đăng Ký</a></li>
-							<li><a style="color:white" href="login_form">Đăng Nhập</a></li>
-							{{-- <li style="margin-top: 10px;"><button style="background-color: #317E8C;" class="btn"><a href="add_post" style="color:white">Đăng Bài</a></button></li> --}}
-							@endif
+							{{-- Authen --}}
+							@include('layouts.authen');
 							@if(session('No_Category'))
 
 
@@ -211,7 +186,9 @@
 						<div class="post_item">
 							<div class="row">
 								<div class="col-md-12">
+									<a href="{{url('showpost')}}/{{$valuePostNhaHang->id}}">
 									<img src="{{asset('upload/picture/post/'). '/'. $valuePostNhaHang->photo}}" alt="no_pic" height="150px" width="100%">
+									</a>
 								</div>
 							</div>
 							<div class="row">
@@ -221,7 +198,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-									<i class="fa fa-globe" aria-hidden="true"></i><a href="" class="space_left">{{$valuePostNhaHang->website}}</a>
+									<i class="fa fa-globe" aria-hidden="true"></i><a href="{{$valuePostNhaHang->website}}" class="space_left">{{$valuePostNhaHang->website}}</a>
 								</div>
 							</div>
 							<div class="row">
@@ -261,7 +238,9 @@
 						<div class="post_item">
 							<div class="row">
 								<div class="col-md-12">
+									<a href="{{url('showpost')}}/{{$valuePostKhachSan->id}}">
 									<img src="{{asset('upload/picture/post/'). '/'. $valuePostKhachSan->photo}}" alt="no_pic" height="150px" width="100%">
+									</a>
 								</div>
 							</div>
 							<div class="row">
@@ -271,7 +250,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-									<i class="fa fa-globe" aria-hidden="true"></i><a href="" class="space_left">{{$valuePostKhachSan->website}}</a>
+									<i class="fa fa-globe" aria-hidden="true"></i><a href="{{$valuePostKhachSan->website}}" class="space_left">{{$valuePostKhachSan->website}}</a>
 								</div>
 							</div>
 							<div class="row">
@@ -344,6 +323,7 @@
 		});
 	}
 	// End  Ajax pagination B
+	
 </script>
 
 <!-- XONG PHẦN CONTENT -->

@@ -6,7 +6,9 @@
 						<div class="post_item">
 							<div class="row">
 								<div class="col-md-12">
+									<a href="{{url('showpost')}}/{{$valuePostNhaHang->id}}">
 									<img src="{{asset('upload/picture/post/'). '/'. $valuePostNhaHang->photo}}" alt="no_pic" height="150px" width="100%">
+									</a>
 								</div>
 							</div>
 							<div class="row">

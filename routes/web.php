@@ -13,12 +13,21 @@ Route::get('ajax/product_pageA/{page?}', "HomeController@ajaxPaginationA");
 // ajax pagination_a idex  BBBB
 Route::get('ajax/product_pageB/{page?}', "HomeController@ajaxPaginationB");
 
+// --------------- Begin trang quản trị ---------------------------------
+Route::get('admin', 'AdministratorController@getAdmin')->middleware('test_admin');
+// Quản lý danh sách account
+Route::get('admin/list_user', 'AdministratorController@getAdminListUser')->middleware('test_admin');
+// Xử lý thay đổi quyền user
+Route::get('change_role', 'AdministratorController@getChangeRole')->name('change_role');
+// Quản lý bài post
+Route::get('admin/list_post', 'AdministratorController@getListPost')->middleware('test_admin');
+// Xử lý duyệt bài post
+Route::get('admin/change_post_status/{post_id?}', 'AdministratorController@getChangePostStatus')->middleware('test_admin');
+
+// --------------- End trang quản trị ---------------------------------
+
 // ------------- Login- Register------------------------------
 Route::get('test', 'AuthenController@getTest');
-// Quản lý danh sách account
-Route::get('list_user', 'AuthenController@getListUser');
-// Xử lý thay đổi quyền user
-Route::get('change_role/{id}', 'AuthenController@getChangeRole');
 
 // Form đăng ký
 Route::get('register_form', 'AuthenController@getRegisterForm');

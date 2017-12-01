@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class UserLoginMiddleware
+class TestAdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,13 +16,13 @@ class UserLoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check())   //Kiểm tra đăng nhập
+        if(Auth::check() && Auth::user()->role == 1)   //Kiểm tra đăng nhập quản trị viên : role = 1
         {
             return $next($request);
         }
         else
         {
-            return redirect('login_form')->with('login_request','Vui lòng đăng nhập để thực hiện chức năng này.');
+            return redirect('login_form')->with('login_request','Bạn không phải là quản trị viên. Nên không thể sử dụng chức năng này');
         }
     }
 }

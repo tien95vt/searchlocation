@@ -58,6 +58,7 @@ class AuthenController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        // role = 0->thường; 1:admin
         $user->role = 0;
         $user->save();
         // Tạo profile tương ứng
@@ -110,20 +111,8 @@ class AuthenController extends Controller
         return redirect('login_form');
     }
 
-    // Quản lý danh sách user account
-    public function getListUser()
-    {
-        // role: 0 = user, 1=admin
-        $user = User::all();
-        return view('user.list_user', ['user'=>$user]);
-    }
 
-    // xử lý thay đổi quyền user
-    public function getChangeRole($a)
-    {
-        dd($a);
-    }
-
+  
     // Quản lý thông tin user
     public function getInfoUser($userId)
     {

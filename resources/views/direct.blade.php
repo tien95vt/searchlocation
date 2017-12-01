@@ -128,8 +128,8 @@
         </div>
         {{-- begin chọn mode chỉ đường : drivnig, bus,... --}}
         <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 10px">
-          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/DRIVING"><button class="btn btn-default" id="driving_id">DRIVING</button></a>
-          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/TRANSIT"><button class="btn btn-default" id="transit_id">BUS</button></a>
+          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/DRIVING"><button class="btn btn-default" id="driving_id" style="width: 70px"><i class="fa fa-car fa-2x" aria-hidden="true"></i></button></a>
+          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/TRANSIT"><button class="btn btn-default" id="transit_id" style="width: 70px"><i class="fa fa-bus fa-2x" aria-hidden="true"></i></button></a>
         </div>
         {{-- End chọn mode chỉ đường : drivnig, bus,... --}}
         <div id="right-panel"></div>
@@ -150,8 +150,9 @@
       });
 
     </script>
+    {{-- AIzaSyDi-oPYdlnMKX_sG7qB-eFhmLh9vHE41n4 --}}
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi-oPYdlnMKX_sG7qB-eFhmLh9vHE41n4&callback=initMap&language=vi&region=VN">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzTaGh_nkps4V7mQ2GjFqdwRwU8Ypj3xs&callback=initMap&language=vi&region=VN">
     </script>
     <script>
 
