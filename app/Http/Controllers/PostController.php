@@ -111,6 +111,8 @@ class PostController extends Controller
     	$post->website = $website;
     	$post->phone = $phone;
     	$post->address = $address;
+        $post->status = 0;      //Chưa duyệt bài
+        $post->rate = 0;
     	$post->description = $des;
     	$post->open_time = $openTime;
     	$post->close_time = $closeTime;

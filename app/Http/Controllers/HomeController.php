@@ -16,12 +16,7 @@ class HomeController extends Controller
         // Post Nhà hàng
         $postNhahang = category::find(7)->post()->paginate(4, ['*'], 'pagination_a');
         // Post khách sạn
-        $postKhachSan = category::find(8)->post()->paginate(1, ['*'], 'pagination_b');
-        // $postKhachSan->setPageName('other_page');
-        
-        // Hiển thị các bài viết mới
-        // $post = post::orderBy('created_at', 'desc')->take(5)->get();
-    	// return view('index',['keyword'=>$keyword,'vitri'=>$vitri3,'ogrigin'=>$ogrigin]);
+        $postKhachSan = category::find(8)->post()->paginate(4, ['*'], 'pagination_b');  
         return view('index', ['postNhahang' => $postNhahang, 'postKhachSan' => $postKhachSan ]);
     }
 
