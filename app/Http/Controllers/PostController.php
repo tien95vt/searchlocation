@@ -34,8 +34,8 @@ class PostController extends Controller
         $picturePost = postPicture::where('post_id', $postId)->get();
         // Đổ dữ liệu comment ra
         $comment = comment::where('post_id', $postId)->orderBy('created_at','desc')->paginate(5);
-
-        return view('showpost.post', ['postId'=>$postId,'curentPost'=>$curentPost, 'newRefPost'=>$newRefPost, 'picturePost'=>$picturePost, 'comment'=>$comment]);
+        $rating = comment::where('post_id', $postId)->select('rate')->get();
+        return view('showpost.post', ['postId'=>$postId,'curentPost'=>$curentPost, 'newRefPost'=>$newRefPost, 'picturePost'=>$picturePost, 'comment'=>$comment, 'rating'=>$rating]);
     }
     // Thêm bài post
     public function getAddPost()
@@ -110,6 +110,8 @@ class PostController extends Controller
     	$post->title = $title;
     	$post->website = $website;
     	$post->phone = $phone;
+        $post->status = 0;
+        $post->rate = 0;
     	$post->address = $address;
     	$post->description = $des;
     	$post->open_time = $openTime;
@@ -237,6 +239,8 @@ class PostController extends Controller
         $titleComment = $request->titleComment;
         // Nội dung comment
         $contentComment = $request->comment;
+        //nội dung rate
+        $contentRate = $request->rate;
         // id nguời post bài
         $idUser = Auth::user()->id;
         // Thêm comment vào db
@@ -245,11 +249,18 @@ class PostController extends Controller
         $comment->post_id = $idPost;
         $comment->title = $titleComment;
         $comment->content = $contentComment;
+        $comment->rate = $contentRate;
         $comment->save();
 
         // Trả lại danh sách comment AJAX
         $urlPaginate = route('show_post'). "/". $idPost;
         $comment = comment::where('post_id', $idPost)->orderBy('created_at','desc')->paginate(5)->setPath($urlPaginate);
+        //AVG
+        $avgStar = comment::where('post_id', $idPost)->avg('rate');
+        $postStar =  post::find($idPost);
+        $postStar->rate = $avgStar;
+        $postStar->save();
+        //dd($avgStar);
         return view('post.ajax_comment', ['comment'=>$comment]);
     }
 

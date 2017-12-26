@@ -104,32 +104,38 @@
     </style>
   </head>
   <body>
+
     <!-- <div id="floating-panel">
     </div> -->
+    @include('layouts.header')
     @include('layouts.menu')
        <div class="row">
       <div class="col-md-4">
-        <div class="start">
+        <div class="start" style="padding: 10px;">
           {{-- <button class="btn btn-success">Vị trí xuất phát :</button> --}}
-          <i class="fa fa-home fa-2x" aria-hidden="true"></i><span style="font-size: 18px">Xuất phát: {{$ogrigin}}</span>
+          <i class="fa fa-home fa-2x" aria-hidden="true"></i><span style="font-size: 18px; padding:10px;">Xuất phát: {{$ogrigin}}</span>
         </div>
         
-        <div class="end" style="margin-top: 10px;">
+        <div class="end" style="padding: 10px;">
          {{--  <button class="btn btn-danger" style="margin-bottom: 20px;">Vị trí đích :</button>  --}}
-         <i class="fa fa-home fa-2x" aria-hidden="true"></i> <span style="font-size: 18px">Đích: {{$destination}}</span>
+         <i class="fa fa-home fa-2x" aria-hidden="true"></i> <span style="font-size: 18px; padding:10px;">Đích: {{$destination}}</span>
         </div>
 
         <div class="end">
           {{-- <a href="{{url('move/'.$endposition.'')}}" class="btn btn-info">
             <span class="glyphicon glyphicon-search"></span> Chỉ Đường
           </a> --}}
-          
+                
+
           
         </div>
+
+
         {{-- begin chọn mode chỉ đường : drivnig, bus,... --}}
         <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 10px">
-          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/DRIVING"><button class="btn btn-default" id="driving_id" style="width: 70px"><i class="fa fa-car fa-2x" aria-hidden="true"></i></button></a>
-          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/TRANSIT"><button class="btn btn-default" id="transit_id" style="width: 70px"><i class="fa fa-bus fa-2x" aria-hidden="true"></i></button></a>
+          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/DRIVING"><button class="btn btn-default" id="driving_id" style="width: 70px" data-toggle="tooltip" data-placement="bottom" title="Đi bằng xe Bus"><i class="fa fa-car fa-2x" aria-hidden="true"></i></button></a>
+
+          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/TRANSIT"><button class="btn btn-default" id="transit_id" style="width: 70px" data-toggle="tooltip" data-placement="bottom" title="Đi bằng xe máy, Ô tô"><i class="fa fa-bus fa-2x" aria-hidden="true"></i></button></a>
         </div>
         {{-- End chọn mode chỉ đường : drivnig, bus,... --}}
         <div id="right-panel"></div>
@@ -195,7 +201,11 @@
       }
 
     </script>
-    
+    <script>
+      $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();   
+      });
+    </script>
     @include('layouts.footer')
   </body>
 </html>
