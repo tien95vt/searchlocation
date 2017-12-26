@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function getPosition(Request $request)
     {
         // Post Nhà hàng
-        $postNhahang = category::find(7)->post()->paginate(4, ['*'], 'pagination_a');
+        $postNhahang = category::find(7)->post()->paginate(8, ['*'], 'pagination_a');
         // Post khách sạn
         $postKhachSan = category::find(8)->post()->paginate(4, ['*'], 'pagination_b');  
         return view('index', ['postNhahang' => $postNhahang, 'postKhachSan' => $postKhachSan ]);
@@ -23,7 +23,7 @@ class HomeController extends Controller
     // Ajax pagination Page AAAAAAA
     public function ajaxPaginationA($pagination_a = '1')
     {
-         $postNhahang = category::find(7)->post()->paginate(4, ['*'], 'pagination_a');
+         $postNhahang = category::find(7)->post()->paginate(8, ['*'], 'pagination_a');
         return view('view_ajax_index_pageA', ['postNhahang'=>$postNhahang]);
     }
      // Ajax pagination Page BBBBBB

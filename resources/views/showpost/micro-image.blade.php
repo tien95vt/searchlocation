@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-sm-12 col-md-12">
+<div class="col-xs-12 col-sm-12 col-md-12" style="padding-top:10px;padding-bottom:10px;">
   <div class="carousel carousel-showmanymoveone slide" id="itemslider">
     <div class="carousel-inner">
     @foreach($picturePost as $key => $valuePicturePost)

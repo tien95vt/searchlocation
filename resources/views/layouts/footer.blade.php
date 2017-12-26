@@ -278,11 +278,13 @@
 				if ($(window).scrollTop() > 150) {
 					//$(".navbar-transparent").animate("background-color", "#317E8C"});
 					$(".navbar-transparent").css({"background-color": "#317E8C", "transition-duration": ".5s"});
-
 					$('.scroll-top-wrapper').addClass('show');
+					$( '.navbar-brand-index' ).css({"visibility": "visible"});
 				} else {
 					$(".navbar-transparent").css("background-color", "transparent");
-					$('.scroll-top-wrapper').removeClass('show');
+					$('.scroll-top-wrapper').removeClass('show');		
+					$('.navbar-brand-index').css({"visibility": "hidden"});
+					
 				}
 			});
 			$('.scroll-top-wrapper').on('click', scrollToTop);

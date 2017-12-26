@@ -11,8 +11,8 @@
 		border-radius:none;
 
 	</style>
-
-	<div class="row" style="background-image: url('images/bg3.jpg');background-size: cover;background-repeat: no-repeat;">
+	<body class="template-ge">
+		<div class="row" style="background-image: url('images/bg3.jpg');background-size: cover;background-repeat: no-repeat;">
 		<canvas id="constellationel"></canvas>
 		<div class="col-md-12" style="z-index: 200">
 			<div style=" position: absolute;height: 100%;width: 100%;opacity: 0.4;"></div>
@@ -28,7 +28,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						{{-- <a class="navbar-brand" href="#"><img style="text-align: center;" src="./images/logo-small.png" alt="logo"></a> --}}
+						<a class="navbar-brand navbar-brand-index" style="font-family: 'Monoton', cursive;font-size: 30px;visibility: hidden;" href="{{url('index')}}"><img src="./images/logo-small-single.png" alt="TiNa"></a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
@@ -54,7 +54,14 @@
 					<div class="col-md-12">
 					<center>
 						<img style="text-align: center;padding-bottom: 30px;" src="./images/logo-small.png" alt="logo">
-						<h2 style="color: #fff;font-size: 26px;font-weight: 600;">TÌM KIẾM MỌI ĐỊA ĐIỂM XUNG QUANH BẠN</h2></center>
+						{{-- <h2 style="color: #fff;font-size: 26px;font-weight: 600;">TÌM KIẾM MỌI ĐỊA ĐIỂM XUNG QUANH BẠN</h2> --}}
+						<div class="body-intro">
+							<div class="div-intro" style="color: #fff;font-size: 26px;font-weight: 600;">TÌM KIẾM</div> 
+							<div class="div-intro"> 
+							  <span style="color: #fff;font-size: 26px;font-weight: 600;">MỌI ĐỊA ĐIỂM XUNG QUANH BẠN</span>
+							</div>
+						</div>
+					</center>
 
 				</div>
 
@@ -172,11 +179,81 @@
 <!-- END PHẦN HEADER -->
 
 <!-- BẮT ĐẦU PHẦN CONTENT -->
-<section>	
-	<h1 class="text-center">DANH SÁCH CÁC BÀI POST</h1>	
-	<div class="panel-group">
+<section>
+	<div class="container">
+		<header class="header title-subtitle">
+			<h2 class="widget-title">Địa điểm nổi bật</h2>
+		</header>
+
+		<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item"><a href="#coffee-shop-latest-tab-panel" class="nav-link active" role="tab" data-toggle="tab">Nhà hàng</a></li>
+		<li class="nav-item"><a id="nearby-tab" href="#nearby-tab-panel" class="nav-link" role="tab" data-toggle="tab">Khách sạn</a></li>
+		<li class="nav-item"><a href="#coffee-shop-latest-tab-panel" class="nav-link" role="tab" data-toggle="tab">Bệnh viện</a></li>
+		<li class="nav-item"><a id="nearby-tab" href="#nearby-tab-panel" class="nav-link" role="tab" data-toggle="tab">Cây xăng</a></li>
+		</ul>
+		<div class="panel-body content_ajax_pageA">
+					
+			@php $breakRow = 1; @endphp
+					<div class="row" style="margin: 5px;">
+						@foreach($postNhahang as $valuePostNhaHang)
+						<div class="col-xs-6 col-md-3" style="word-wrap: break-word; padding: 10px;">
+							<div class="post_item">
+								<div class="row">
+									<div class="col-md-12">
+										<a href="{{url('showpost')}}/{{$valuePostNhaHang->id}}">
+											<div class="img-post">
+												<img src="{{asset('upload/picture/post/'). '/'. $valuePostNhaHang->photo}}" alt="no_pic"  class="image">
+
+												<div class="overlay">
+													<a class="btn text" href="{{url('showpost')}}/{{$valuePostNhaHang->id}}">Chi tiết</a>
+												   {{--  <div class="btn btn_detail text">{{$valuePostNhaHang->title}}</div> --}}
+												</div>
+											</div>
+										</a>
+									</div>
+								</div>
+								<div style="padding: 10px;">
+									<div class="row">
+									<div class="col-md-12 title_post" >
+										<h4>{{$valuePostNhaHang->title}}</h4>
+									</div>
+								</div>
+								{{-- <div class="row">
+									<div class="col-md-12">
+										<i class="fa fa-phone-square" aria-hidden="true" style="margin-right: 5px"></i>{{$valuePostNhaHang->phone}}
+									</div>
+								</div> --}}
+								<div class="row title-overflow">
+									<div class="col-md-12">
+										<i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 5px"></i>{{$valuePostNhaHang->address}}
+									</div>
+								</div>
+								{{-- <div class="row">
+									<div class="col-md-12">
+										<i class="fa fa-comment"></i>
+									</div>
+								</div> --}}
+								</div>
+								
+							</div>
+						</div>
+						@if($breakRow%4 == 0)
+					</div> 
+					<div class="row" style="margin: 10px;">
+						@endif
+						@php $breakRow++ ; @endphp
+						@endforeach
+					</div>
+					<div class="text-center pageA">{{$postNhahang->appends(array_except(Request::query(), 'page'))->links()}}
+					</div>
+		</div>
+	</div>
+	
+
+{{-- 	<h1 class="text-center">DANH SÁCH CÁC BÀI POST</h1>	
+	<div class="panel-group"> --}}
 		{{-- Post nhà hàng --}}
-		<div class="panel panel-primary " style="margin: 20px;">
+		{{-- <div class="panel panel-primary " style="margin: 20px;">
 			<div class="panel-heading page1_focus">NHÀ HÀNG </div>
 			<div class="panel-body content_ajax_pageA">
 				@php $breakRow = 1; @endphp
@@ -280,8 +357,8 @@
 				<div class="text-center pageB">{{$postKhachSan->appends(array_except(Request::query(), 'other_page'))->links()}}</div>
 			</div>
 		</div>
-
-	</div>		
+ --}}
+{{-- 	</div>	 --}}	
 
 
 
@@ -306,7 +383,7 @@
 		});
 	}
 	// End Ajax pagination A
-	// // Ajax pagination B
+	// // // Ajax pagination B
 	$(document).ready(function() {
 		$(document).on('click', '.pageB .pagination a', function(e){
 			e.preventDefault();
@@ -325,6 +402,8 @@
 	// End  Ajax pagination B
 	
 </script>
+	</body>
+	
 
 <!-- XONG PHẦN CONTENT -->
 @endsection
