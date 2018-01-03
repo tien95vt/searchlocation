@@ -53,7 +53,7 @@
 						<div class="col-md-4" style="border-left: 1px solid #555">
 							<div class="footer-help-right">
 								<div class="footer-help-right-title" style="font-size: 18px;">
-									Hãy Kết Nối Với ITFood 
+									Hãy Kết Nối Với TINA 
 									<br>Mọi lúc , Mọi Nơi
 								</div>
 								<br>
@@ -76,7 +76,7 @@
 						</div>
 
 						<div class="col-md-4">
-							<p style="color: #666">At RedMart we have our very own fleet of delivery vans. Your order will be packed with care at our warehouse and delivered right to your door by our friendly RedMart team.</p>
+							<p style="color: #666">At TINA we have our very own fleet of delivery vans. Your order will be packed with care at our warehouse and delivered right to your door by our friendly TINA team.</p>
 						</div>
 
 						<div class="col-md-4">

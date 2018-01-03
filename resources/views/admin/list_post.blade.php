@@ -16,7 +16,7 @@
 				{{session('change_status_successfully')}}
 			</div>
 			@endif
-			<h2 class="text-center">Danh sách account</h2>
+			<h2 class="text-center">Danh sách các bài đăng</h2>
 			<table class="table table-hover table-bordered table-striped">
 				<thead>
 					<tr >

@@ -67,31 +67,14 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="pwd">Hình bài post: <span style="color: red">*</span></label>
 					<div class="col-sm-10">          
-						<input type="file" class="form-control" id="" name="n_picture">
+						<input required type="file" class="form-control" id="" name="n_picture">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="pwd">Hình liên quan đến bài post 1:</label>
+					<label class="control-label col-sm-2" for="pwd">Các Hình liên quan:</label>
 					<div class="col-sm-10">          
-						<input type="file" class="form-control" id="" name="n_ref_picture_1">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="pwd">Hình liên quan đến bài post 2:</label>
-					<div class="col-sm-10">          
-						<input type="file" class="form-control" id="" name="n_ref_picture_2">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="pwd">Hình liên quan đến bài post 3:</label>
-					<div class="col-sm-10">          
-						<input type="file" class="form-control" id="" name="n_ref_picture_3">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="pwd">Hình liên quan đến bài post 4:</label>
-					<div class="col-sm-10">          
-						<input type="file" class="form-control" id="" name="n_ref_picture_4">
+						{{-- Nhiề hìnu hinh --}}
+						<input required type="file" class="form-control" name="images[]" placeholder="address" multiple>
 					</div>
 				</div>
 				<div class="form-group">

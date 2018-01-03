@@ -107,7 +107,7 @@
 
     <!-- <div id="floating-panel">
     </div> -->
-    @include('layouts.header')
+    {{-- @include('layouts.header') --}}
     @include('layouts.menu')
        <div class="row">
       <div class="col-md-4">
@@ -156,7 +156,9 @@
       });
 
     </script>
-    {{-- AIzaSyDi-oPYdlnMKX_sG7qB-eFhmLh9vHE41n4 --}}
+    {{-- AIzaSyDi-oPYdlnMKX_sG7qB-eFhmLh9vHE41n4 
+          AIzaSyAzTaGh_nkps4V7mQ2GjFqdwRwU8Ypj3xs
+      --}}
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzTaGh_nkps4V7mQ2GjFqdwRwU8Ypj3xs&callback=initMap&language=vi&region=VN">
     </script>

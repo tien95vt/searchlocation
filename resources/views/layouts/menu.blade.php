@@ -13,7 +13,7 @@
         <span class="icon-bar"></span>
       </button>
       <!-- <a class="navbar-brand" style="font-family: 'Monoton', cursive;font-size: 30px;" href="{{route('getPosition')}}">ITFood</a> -->
-      <a class="navbar-brand" style="font-family: 'Monoton', cursive;font-size: 30px;" href="{{url('index')}}"><img src="http://localhost:8080/searchlocation/searchlocation/public/images/logo-small-single.png" alt="TiNa"></a>
+      <a class="navbar-brand" style="font-family: 'Monoton', cursive;font-size: 30px;" href="{{url('index')}}"><img src="{{asset('images/logo-small-single.png')}}" alt="TiNa"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

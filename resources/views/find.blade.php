@@ -508,7 +508,7 @@
 						}
 						for(var r=5; r>round_rate; r--)
 						{
-							rate_image = rate_image+ '<span class="fa fa-star checked"></span>'
+							rate_image = rate_image+ '<span class="fa fa-star checked"  style="color: #ecf0f1;"></span>'
 						}
 					}
 					
@@ -546,7 +546,7 @@
 								+'<div class="col-sm-12">'
 				+'<div class="panel panel-white post panel-shadow">'
 						+'<div class="post-heading">'
-						+'<div class="pull-left image">'
+						+'<div class="pull-left ">'
 							+'<img src="'+ avatar[i]+'" width="60px" height="60px" alt="no_pic">'
 						+'</div>'
 						+'<div class="pull-left meta">'
@@ -563,7 +563,7 @@
 						}
 						for(var tmp_r = 5; tmp_r>rate[i]; tmp_r--)
 						{
-							review = review +'<span class="fa fa-star checked" ></span>'
+							review = review +'<span class="fa fa-star checked" style="color: #ecf0f1;"></span>'
 						}
 						review = review 
 						+'<p>'+ text_comment[i]+ '</p>'
