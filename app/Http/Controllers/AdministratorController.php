@@ -28,6 +28,7 @@ class AdministratorController extends Controller
         $user = User::find($idUser);
         $user->role = $new_role;
         $user->save();
+        // return redirect('admin/list_user');
     }
     // Quản lý bài post
     public function getListPost(){

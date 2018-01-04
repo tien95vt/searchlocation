@@ -23,6 +23,12 @@ Route::get('change_role', 'AdministratorController@getChangeRole')->name('change
 Route::get('admin/list_post', 'AdministratorController@getListPost')->middleware('test_admin');
 // Xử lý duyệt bài post
 Route::get('admin/change_post_status/{post_id?}', 'AdministratorController@getChangePostStatus')->middleware('test_admin');
+// Danh sách bài post của mình
+Route::get('list_my_post', 'PostController@getListMyPost')->name('list_my_post');
+// Sửa bài post của mình
+Route::get('edit_my_post/{post_id}', 'PostController@getEditMyPost')->name('edit_my_post');
+// Xử lý sửa bài post của mình
+Route::post('process_edit_my_post/{post_id}', 'PostController@postEditMyPost')->name('post_edit_my_post');
 
 // --------------- End trang quản trị ---------------------------------
 

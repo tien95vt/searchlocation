@@ -71,7 +71,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="pwd">Các Hình liên quan:</label>
+					<label class="control-label col-sm-2" for="pwd">Các Hình liên quan: <span style="color: red">*</span></label>
 					<div class="col-sm-10">          
 						{{-- Nhiề hìnu hinh --}}
 						<input required type="file" class="form-control" name="images[]" placeholder="address" multiple>
@@ -104,7 +104,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="pwd"> Giờ mở cửa (7:30:SA):</label>
 					<div class="col-sm-10">          
-						<input type="time" class="form-control" id="" name="n_open_time" value="{{old('n_open_time')}}">
+						<input type="time" class="form-control" id="open_time_id" name="n_open_time" value="{{old('n_open_time')}}">
 					</div>
 				</div>
 				<div class="form-group">
@@ -131,6 +131,7 @@
 		$(document).ready(function($) {
 			$('#menu').css('display', 'none');
 		});
+
 	</script>
 
 </body>

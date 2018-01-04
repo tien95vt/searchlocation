@@ -60,8 +60,8 @@ class PostController extends Controller
     			'n_title' => 'required|min:5|max:100',
     			'n_des' => 'required',
                 'images' => 'required',
-    		],
-    		[
+            ],
+            [
                 'n_category.required' => "Bạn chưa chọn thể loại.",
                 'n_title.required' => "Bạn chưa nhập tiêu đề.",
                 'n_title.min' => "Độ dài Tiêu đề tối thiểu phải 5 ký tự.",
@@ -107,14 +107,14 @@ class PostController extends Controller
           $post->photo = "";
       }
     	// Lưu database trên bảng post
-      $post->category_id = $idCategory;
-      $post->user_id = $idUser;
-      $post->title = $title;
-      $post->website = $website;
-      $post->phone = $phone;
-      $post->status = 0;
-      $post->rate = 0;
-      $post->address = $address;
+        $post->category_id = $idCategory;
+        $post->user_id = $idUser;
+        $post->title = $title;
+        $post->website = $website;
+        $post->phone = $phone;
+        $post->status = 0;
+        $post->rate = 0;
+        $post->address = $address;
         $post->status = 0;      //Chưa duyệt bài
         $post->rate = 0;
         $post->description = $des;
@@ -225,5 +225,53 @@ class PostController extends Controller
         $category->save();
 
         return redirect('add_category')->with('Success_Add_Cat', 'Thêm thể loại thành công');
+    }
+    // Danh sách các bài post của mình
+    public function getListMyPost()
+    {
+        $post = post::where('user_id', Auth::user()->id)->get();
+        return view('post.list_my_post', ['post'=>$post]);
+    }
+    // show Chỉnh sủa bài post của mình
+    public function getEditMyPost($idPost)
+    {
+        $post = post::find($idPost);
+        $category = category::all();
+        return view('post.edit_my_post', ['post'=>$post, 'category'=>$category, 'idPost'=>$idPost]);
+    }
+    // Xử lý chỉnh sửa bài post của mình
+    public function postEditMyPost($idPost, Request $request)
+    {
+        // Validate
+        $this->validate($request, 
+            [
+                'n_category' => 'required',
+                'n_title' => 'required|min:5|max:100',
+                'n_des' => 'required',
+                // 'images' => 'required',
+            ],
+            [
+                'n_category.required' => "Bạn chưa chọn thể loại.",
+                'n_title.required' => "Bạn chưa nhập tiêu đề .",
+                'n_title.min' => "Độ dài Tiêu đề tối thiểu phải 5 ký tự.",
+                'n_title.max' => "Độ dài Tiêu đề tối đa là 100 ký tự.",
+                'n_des.required' => "Bạn chưa nhập nội dung.",
+                // 'images.required' => "Bạn chưa chọn hình liên quan.",
+            ]
+        );
+        // Xử lý sửa
+        $post = post::find($idPost);
+        $post->category_id = $request->n_category;
+        $post->title = $request->n_title;
+        $post->website = $request->n_website;
+        $post->phone = $request->n_phone;
+        $post->address = $request->n_address;
+        $post->description = $request->n_des;
+        $post->open_time = $request->n_open_time;
+        $post->close_time = $request->n_close_time;
+        $post->save();
+
+        $url = 'edit_my_post/'. $idPost;
+        return redirect($url)->with('edit_successfully', 'Bạn đã chỉnh sửa thành công.');
     }
 }

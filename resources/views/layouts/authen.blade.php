@@ -12,7 +12,7 @@ $user = App\User::find(Auth::user()->id);
 		</li>
 
 		<li>
-			<a href="{{asset('profile')}}/{{Auth::user()->id}}"><i class="fa fa-cog" aria-hidden="true"></i><span style="padding-left: 1.5em">Cập Nhật Thông Tin Cá Nhân</span></a>
+			<a href="{{asset('list_my_post')}}"><i class="fa fa-list" aria-hidden="true"></i><span style="padding-left: 1.5em">Danh sách bài đăng</span></a>
 		</li>
 
 		<li><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="padding-left: 1.5em">Đăng xuất</span></a></li>

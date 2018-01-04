@@ -11,7 +11,8 @@
 			</ul>
 		</div>
 		<div class="col-md-9">
-			<h2 class="text-center">Danh sách account</h2>
+			<h2 class="text-center" style="color: #00979C">Danh sách account</h2>
+			<hr>
 			<table class="table table-hover table-bordered table-striped">
 				<thead>
 					<tr>
