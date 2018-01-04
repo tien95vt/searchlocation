@@ -125,11 +125,8 @@ class PostController extends Controller
         // Thêm các hình liên quan 
         // Lấy id post vừa tạo
         $idNewestPost = post::orderBy('id', 'desc')->first()->id;
-
-        // Thêm các hình liên quan 
-        // Lấy id post vừa tạo
-        $idNewestPost = post::orderBy('id', 'desc')->first()->id;
-        if( $files = $request->file('images') ){
+        if( $files = $request->file('images') )
+        {
             foreach($files as $file){
                 $postPicture = new postPicture;
 
@@ -313,6 +310,27 @@ class PostController extends Controller
             }
         }
         $post->save();
+        // Thêm các hình liên quan 
+        if( $files = $request->file('images') )
+        {
+            foreach($files as $file){
+                $postPicture = new postPicture;
+
+                $name = $file->getClientOriginalName();
+                // random tên hình để ko trùng
+                $name = str_random(4)."_".$name;
+                while(file_exists("upload/picture/post".$name))
+                {
+                    $name = str_random(4)."_".$name;
+                }
+                // upload hinh
+                $file->move('upload/picture/post', $name);
+                //  Lưu database
+                $postPicture->post_id = $idPost;
+                $postPicture->reference_piture = $name;
+                $postPicture->save();            
+            }
+        }
 
         $url = 'edit_my_post/'. $idPost;
         return redirect($url)->with('edit_successfully', 'Bạn đã chỉnh sửa thành công.');

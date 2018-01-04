@@ -70,6 +70,16 @@
 				</div>
 				<div class="form-group">
 					<label for="">Các Hình liên quan</label>
+					<br>	
+					<div class="form-group row col-md-offset-1">
+						<div class="col-md-2">
+							<label for="" class="control-label" style="margin-left: 73px; color:red">Thêm hình</label>
+						</div>
+						<div class="col-md-7">
+							<input  type="file" class="form-control" id="" name="images[]" multiple>
+						</div>
+					</div>
+					<br>
 					<table class="table table-bordered">
 						<thead>
 							<tr>
@@ -80,13 +90,16 @@
 						</thead>
 						<tbody>
 							@foreach($post_picture as $key => $value_post_picture)
-							<tr>
+							<tr class="text-center">
 								<th scope="row" width="50px">{{++$key}}</th>
-								<td width="200px">
+								<td>
 									<img src="{{ asset('upload/picture/post'). '/'. $value_post_picture->reference_piture }}" alt="no_pic" width="150px" height="100px">
 								</td>
-								<td width=""><input  type="file" class="form-control test_change" id="{{$value_post_picture->id}}" name="n_picture_{{$key}}"></td>
-								<input type="text" name="n_id_{{$key}}" value="{{$value_post_picture->id}}">
+								<td width="">
+									<input  type="file" class="form-control test_change" id="{{$value_post_picture->id}}" name="n_picture_{{$key}}">
+								</td>
+								{{-- hidden: id post_picture --}}
+								<input type="hidden" name="n_id_{{$key}}" value="{{$value_post_picture->id}}">
 							</tr>
 							@endforeach
 						</tbody>
