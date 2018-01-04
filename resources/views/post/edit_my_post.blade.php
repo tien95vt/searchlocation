@@ -23,7 +23,7 @@
 				</div>
 				@endif
 			</div>
-			<form action='{{url('process_edit_my_post')}}/{{$idPost}}' method="POST">
+			<form action='{{url('process_edit_my_post')}}/{{$idPost}}' method="POST" enctype="multipart/form-data">
 				{{csrf_field()}}
 				<div class="form-group">
 					<label >Thể loại</label>
@@ -66,15 +66,36 @@
 					<label for="">Hình bài post</label>
 					<br>
 					<img src="{{asset('upload/picture/post'). '/'. $post->photo}}" alt="no_pic" width="200px" height="150px">
-					<input required type="file" class="form-control" id="" name="n_picture">
+					<input  type="file" class="form-control" id="" name="n_picture">
 				</div>
 				<div class="form-group">
 					<label for="">Các Hình liên quan</label>
-					.........
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">STT</th>
+								<th scope="col">Hình</th>
+								<th scope="col">Sửa</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach($post_picture as $key => $value_post_picture)
+							<tr>
+								<th scope="row" width="50px">{{++$key}}</th>
+								<td width="200px">
+									<img src="{{ asset('upload/picture/post'). '/'. $value_post_picture->reference_piture }}" alt="no_pic" width="150px" height="100px">
+								</td>
+								<td width=""><input  type="file" class="form-control test_change" id="{{$value_post_picture->id}}" name="n_picture_{{$key}}"></td>
+								<input type="text" name="n_id_{{$key}}" value="{{$value_post_picture->id}}">
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
 				</div>
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</div>
 		@include('layouts.footer_new')
+
 	</body>
 	</html>

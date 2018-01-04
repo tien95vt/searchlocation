@@ -107,14 +107,14 @@ class PostController extends Controller
           $post->photo = "";
       }
     	// Lưu database trên bảng post
-        $post->category_id = $idCategory;
-        $post->user_id = $idUser;
-        $post->title = $title;
-        $post->website = $website;
-        $post->phone = $phone;
-        $post->status = 0;
-        $post->rate = 0;
-        $post->address = $address;
+      $post->category_id = $idCategory;
+      $post->user_id = $idUser;
+      $post->title = $title;
+      $post->website = $website;
+      $post->phone = $phone;
+      $post->status = 0;
+      $post->rate = 0;
+      $post->address = $address;
         $post->status = 0;      //Chưa duyệt bài
         $post->rate = 0;
         $post->description = $des;
@@ -237,7 +237,8 @@ class PostController extends Controller
     {
         $post = post::find($idPost);
         $category = category::all();
-        return view('post.edit_my_post', ['post'=>$post, 'category'=>$category, 'idPost'=>$idPost]);
+        $post_picture = postPicture::where('post_id', $idPost)->get();
+        return view('post.edit_my_post', ['post'=>$post, 'category'=>$category, 'idPost'=>$idPost, 'post_picture'=>$post_picture]);
     }
     // Xử lý chỉnh sửa bài post của mình
     public function postEditMyPost($idPost, Request $request)
@@ -269,6 +270,48 @@ class PostController extends Controller
         $post->description = $request->n_des;
         $post->open_time = $request->n_open_time;
         $post->close_time = $request->n_close_time;
+        // Sửa hình chính
+        if($request->hasFile('n_picture'))
+        {
+            $picture = $request->File('n_picture');
+            $namePicture = $picture->getClientOriginalName();
+            // random tên hình để ko trùng
+            $namePicture = str_random(4)."_".$namePicture;
+            while(file_exists("upload/picture/post".$namePicture))
+            {
+                $namePicture = str_random(4)."_".$namePicture;
+            }
+            // lưu hình upload
+            $picture->move('upload/picture/post', $namePicture);
+            unlink('upload/picture/post/'. $post->photo);
+            $post->photo = $namePicture;
+        }
+        // Sửa hình liên quan
+        // $count = sô hình liên quan
+        $count =  count( postPicture::where('post_id', $idPost)->get() ) ;
+        for($i=1; $i<=$count; $i++ )
+        {
+            $name_file = 'n_picture_'. $i;
+            $file_id = 'n_id_'. $i;
+            if( $request->hasFile($name_file) )
+            {
+                // dd( postPicture::find($request->$file_id) );
+                $post_picture = postPicture::find($request->$file_id);
+                $picture_rf = $request->File($name_file);
+                $namePicture_rf = $picture_rf->getClientOriginalName();
+                // random tên hình để ko trùng
+                $namePicture_rf = str_random(4)."_".$namePicture_rf;
+                while(file_exists("upload/picture/post".$namePicture_rf))
+                {
+                    $namePicture_rf = str_random(4)."_".$namePicture_rf;
+                }
+                // lưu hình upload
+                $picture_rf->move('upload/picture/post', $namePicture_rf);
+                unlink('upload/picture/post/'. $post_picture->reference_piture);
+                $post_picture->reference_piture = $namePicture_rf;
+                $post_picture->save();
+            }
+        }
         $post->save();
 
         $url = 'edit_my_post/'. $idPost;
