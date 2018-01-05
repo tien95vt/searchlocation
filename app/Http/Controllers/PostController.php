@@ -335,4 +335,17 @@ class PostController extends Controller
         $url = 'edit_my_post/'. $idPost;
         return redirect($url)->with('edit_successfully', 'Bạn đã chỉnh sửa thành công.');
     }
+    // Xóa bài post
+    public function getDeleteMyPost($idPost)
+    {
+        $post = post::find($idPost);
+        if( $post->user_id == Auth::user()->id ){
+            $post_picture = postPicture::where('post_id', $idPost);
+            $post_picture->delete();
+            $comment = comment::where('post_id', $idPost);
+            $comment->delete();
+            $post->delete();
+            return redirect('list_my_post')->with('detele_successfully', 'Bạn đã xóa thành công.');
+        }
+    }
 }

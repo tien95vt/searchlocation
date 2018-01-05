@@ -188,7 +188,7 @@
 			<ul class="nav nav-tabs" id="myTabs">
 				<li class="active"><a href="#home" data-url="/embed/62805/view">Khách sạn</a></li>
 				<li><a href="#profile" data-url="/embed/62806/view">Nhà hàng</a></li>
-				<li><a href="#messages" data-url="/embed/62807/view">Messages</a></li>
+				<li><a href="#messages" data-url="/embed/62807/view">Khác</a></li>
 			</ul>
 			{{-- Nội dung --}}
 			<div class="tab-content">

@@ -16,7 +16,7 @@ class HomeController extends Controller
         // Post Nhà hàng
         $postNhahang = category::find(7)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(8, ['*'], 'pagination_a');
         // Post khách sạn
-        $postKhachSan = category::find(8)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(2, ['*'], 'pagination_b');  
+        $postKhachSan = category::find(8)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(8, ['*'], 'pagination_b');  
         return view('index', ['postNhahang' => $postNhahang, 'postKhachSan' => $postKhachSan ]);
     }
 
@@ -29,7 +29,7 @@ class HomeController extends Controller
      // Ajax pagination Page BBBBBB
     public function ajaxPaginationB($pagination_b = '1')
     {
-        $postKhachSan = category::find(8)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(2, ['*'], 'pagination_b');
+        $postKhachSan = category::find(8)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(8, ['*'], 'pagination_b');
         return view('view_ajax_index_pageB', ['postKhachSan'=>$postKhachSan]);
     }
 

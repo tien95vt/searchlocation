@@ -29,6 +29,8 @@ Route::get('list_my_post', 'PostController@getListMyPost')->name('list_my_post')
 Route::get('edit_my_post/{post_id}', 'PostController@getEditMyPost')->name('edit_my_post');
 // Xử lý sửa bài post của mình
 Route::post('process_edit_my_post/{post_id}', 'PostController@postEditMyPost')->name('post_edit_my_post');
+// Xóa bài post của mình
+Route::get('delete_my_post/{post_id}', 'PostController@getDeleteMyPost');
 
 // --------------- End trang quản trị ---------------------------------
 
