@@ -8,10 +8,13 @@ Route::get('index',"HomeController@getPosition")->name('getPosition');
 Route::get('find', "HomeController@getFind")->name('getFind');
 Route::get('direct/{position}/{endposition}/{ogrigin}/{destination}/{travel_mode?}',"HomeController@direct")->name('direct');
 Route::get('move/{position}',"HomeController@directMove")->name('move');
-// ajax pagination_a idex  AAAAAA
+// ajax pagination_a idex  AAAAAA (Nhà hàng)
 Route::get('ajax/product_pageA/{page?}', "HomeController@ajaxPaginationA");
-// ajax pagination_a idex  BBBB
+// ajax pagination_a idex  BBBB (khách sạn)
 Route::get('ajax/product_pageB/{page?}', "HomeController@ajaxPaginationB");
+// ajax pagination_a idex  Khac  (còn lại)
+Route::get('ajax/product_pageKhac/{page?}', "HomeController@ajaxPaginationKhac");
+
 
 // --------------- Begin trang quản trị ---------------------------------
 Route::get('admin', 'AdministratorController@getAdmin')->middleware('test_admin');

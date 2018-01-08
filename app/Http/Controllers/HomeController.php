@@ -14,25 +14,32 @@ class HomeController extends Controller
     public function getPosition(Request $request)
     {
         // Post Nhà hàng
-        $postNhahang = category::find(7)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(8, ['*'], 'pagination_a');
+        $postNhahang = category::find(7)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(1, ['*'], 'pagination_a');
         // Post khách sạn
-        $postKhachSan = category::find(8)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(8, ['*'], 'pagination_b');  
-        return view('index', ['postNhahang' => $postNhahang, 'postKhachSan' => $postKhachSan ]);
+        $postKhachSan = category::find(8)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(1, ['*'], 'pagination_b');  
+        // Khác
+        $postAll = post::where('category_id', '!=', 7)->where('category_id', '!=', 8)->where('status', 1)->orderBy('rate', 'desc')->paginate(1, ['*'], 'pagination_khac');
+        return view('index', ['postNhahang' => $postNhahang, 'postKhachSan' => $postKhachSan, 'postAll'=>$postAll ]);
     }
 
-    // Ajax pagination Page AAAAAAA
+    // Ajax pagination Page AAAAAAA (nhà hàng)
     public function ajaxPaginationA($pagination_a = '1')
     {
-         $postNhahang = category::find(7)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(8, ['*'], 'pagination_a');
+         $postNhahang = category::find(7)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(1, ['*'], 'pagination_a');
         return view('view_ajax_index_pageA', ['postNhahang'=>$postNhahang]);
     }
-     // Ajax pagination Page BBBBBB
+     // Ajax pagination Page BBBBBB (khách sạn)
     public function ajaxPaginationB($pagination_b = '1')
     {
-        $postKhachSan = category::find(8)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(8, ['*'], 'pagination_b');
+        $postKhachSan = category::find(8)->post()->where('status', 1)->orderBy('rate', 'desc')->paginate(1, ['*'], 'pagination_b');
         return view('view_ajax_index_pageB', ['postKhachSan'=>$postKhachSan]);
     }
-
+    // Ajax pagination Page khac (còn lại)
+    public function ajaxPaginationKhac()
+    {
+        $postAll = post::where('category_id', '!=', 7)->where('category_id', '!=', 8)->where('status', 1)->orderBy('rate', 'desc')->paginate(1, ['*'], 'pagination_khac');
+        return view('view_ajax_index_khac', ['postAll'=>$postAll]);
+    }
     public function getFind(Request $request)
     {
         // dd($request->something);
