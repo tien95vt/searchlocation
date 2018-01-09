@@ -90,40 +90,40 @@
 
 
 	<!-- Modal check permisstion-->
-	  <div class="modal fade bd-example-modal-sm" id="modelCheckPermission" role="dialog">
-	    <div class="modal-dialog modal-sm">
+	<div class="modal fade bd-example-modal-sm" id="modelCheckPermission" role="dialog">
+		<div class="modal-dialog modal-sm">
 
-	      <!-- Modal content-->
-	      <div class="modal-content">
-	        <div class="modal-header" style="padding: 10px; text-align: center;">
-	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <i style="color: #e74c3c; font-size: 20px;" class="fa fa-2x fa-exclamation-triangle" aria-hidden="true"> VUI LÒNG NHẬP LẠI</i>
-	        </div>
-	        <div class="modal-body" style="padding: 10px; text-align: center;">
-	          <p>Không được để trống vị trí hoặc từ khóa cần tìm kiếm</p>
-	        </div>
-	      </div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 10px; text-align: center;">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<i style="color: #e74c3c; font-size: 20px;" class="fa fa-2x fa-exclamation-triangle" aria-hidden="true"> VUI LÒNG NHẬP LẠI</i>
+				</div>
+				<div class="modal-body" style="padding: 10px; text-align: center;">
+					<p>Không được để trống vị trí hoặc từ khóa cần tìm kiếm</p>
+				</div>
+			</div>
 
-	    </div>
-	  </div>
+		</div>
+	</div>
 
-	  <!-- Modal check radius-->
-	  <div class="modal fade bd-example-modal-sm" id="modelCheckRadius" role="dialog">
-	    <div class="modal-dialog modal-sm">
+	<!-- Modal check radius-->
+	<div class="modal fade bd-example-modal-sm" id="modelCheckRadius" role="dialog">
+		<div class="modal-dialog modal-sm">
 
-	      <!-- Modal content-->
-	      <div class="modal-content">
-	        <div class="modal-header"  style="padding: 10px; text-align: center;">
-	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <i style="color: #e74c3c; font-size: 20px;" class="fa fa-2x fa-exclamation-triangle" aria-hidden="true"> VUI LÒNG NHẬP LẠI</i>
-	        </div>
-	        <div class="modal-body" style="padding: 10px; text-align: center;">
-	          <p>Bán kính phải nằm trong khoảng từ 0 đến 50 km</p>
-	        </div>
-	      </div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header"  style="padding: 10px; text-align: center;">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<i style="color: #e74c3c; font-size: 20px;" class="fa fa-2x fa-exclamation-triangle" aria-hidden="true"> VUI LÒNG NHẬP LẠI</i>
+				</div>
+				<div class="modal-body" style="padding: 10px; text-align: center;">
+					<p>Bán kính phải nằm trong khoảng từ 0 đến 50 km</p>
+				</div>
+			</div>
 
-	    </div>
-	  </div>
+		</div>
+	</div>
 </footer>
 <div class="scroll-top-wrapper ">
 	<span class="scroll-top-inner">
@@ -147,14 +147,14 @@
 					var address = document.getElementById('tenvitri').value;
 					geocoder.geocode({'address': address}, function(results, status) {
 					// if (status == google.maps.GeocoderStatus.OK) {
-					if (status == 'OK') {
+						if (status == 'OK') {
 					// geometry.location  => Lấy lat và long 
 					$('#vitri').val(results[0].geometry.location);
 					// alert(results[0].geometry.location);
-					} else {
+				} else {
 					// alert('Geocode was not successful for the following reason: ' + status);
-					}
-					});
+				}
+			});
 				}
 			});
 		}
@@ -180,7 +180,7 @@
 	function codeLatLng(lat, lng) {
 		var latlng = new google.maps.LatLng(lat, lng);
 		geocoder.geocode({'latLng': latlng}, function(results, status) {
-		if (status == google.maps.GeocoderStatus.OK) {
+			if (status == google.maps.GeocoderStatus.OK) {
 	      // console.log(results)
 	      if (results[1]) {
 	         //formatted address
@@ -210,13 +210,13 @@
 
 	        	if(document.getElementById('tenvitri').value == '' || document.getElementById('keyword').value == ''){
 	        		$(document).ready(function(){
-					        $("#modelCheckPermission").modal();
-					});
+	        			$("#modelCheckPermission").modal();
+	        		});
 	        	}else{
 	        		if( testRadius( $("#radius_id").val() ) == 1)
-		        	{
-		        		document.getElementById('timkiem').submit();
-		        	}
+	        		{
+	        			document.getElementById('timkiem').submit();
+	        		}
 	        	}
 	        });
 
@@ -224,41 +224,41 @@
 
 	        //increment khi bam nut
 	        document.getElementById('search_radius').addEventListener('click',function(){
-	        		var value = parseFloat(document.getElementById('radius_id').value, 10);
-				    value = isNaN(value) ? 0 : value;
-				    value+=0.5;
-				    document.getElementById('radius_id').value = value;
+	        	var value = parseFloat(document.getElementById('radius_id').value, 10);
+	        	value = isNaN(value) ? 0 : value;
+	        	value+=0.5;
+	        	document.getElementById('radius_id').value = value;
 	        });
 
 
 	        document.getElementById('keyword').onkeydown = function(e){
 	        	if(e.keyCode === 13){
 	        		if(document.getElementById('tenvitri').value == '' || document.getElementById('keyword').value == ''){
-		        		$(document).ready(function(){
-						    $("#modelCheckPermission").modal();
-						});
-		        	}else{
+	        			$(document).ready(function(){
+	        				$("#modelCheckPermission").modal();
+	        			});
+	        		}else{
 		        		if( testRadius( $("#radius_id").val() ) == 1)  //Đúng radius
 		        		{
 		        			document.getElementById('timkiem').submit();
 		        		}
 		        	}
 
-	        	}
-	        }
-
-
-
-		    } else {
-		    	alert("No results found");
+		        }
 		    }
+
+
+
 		} else {
-			alert("Geocoder failed due to: " + status);
+			alert("No results found");
 		}
-	});
+	} else {
+		alert("Geocoder failed due to: " + status);
+	}
+});
 
 
-}
+	}
 
 
 </script>
@@ -326,15 +326,15 @@
   		else if( radius <= 0)
   		{
   			$(document).ready(function(){
-				$("#modelCheckRadius").modal();
-			});
+  				$("#modelCheckRadius").modal();
+  			});
   			return 0;
   		}
   		else if( radius > 50)
   		{
   			$(document).ready(function(){
-				$("#modelCheckRadius").modal();
-			});
+  				$("#modelCheckRadius").modal();
+  			});
   			return 0;
   		}
   		else
@@ -342,7 +342,6 @@
   			return 1; //đúng
   		}
   	}
-
-
-
   </script>
+
+  

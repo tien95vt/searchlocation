@@ -44,7 +44,7 @@
 				</div>
 				<div class="form-group">
 					<label for="">Địa chỉ</label>
-					<input type="text" class="form-control" id="" name="n_address" placeholder="" value="{{$post->address}}">
+					<input type="text" class="form-control" id="autocomplete_address_edit_id" name="n_address" placeholder="" value="{{$post->address}}">
 				</div>
 				<div class="form-group">
 					<label for="">Số điện thoại</label>
@@ -109,6 +109,21 @@
 			</form>
 		</div>
 		@include('layouts.footer_new')
+		
+		{{-- Autocomplete địa chỉ --}}
+		<script>
+		$(document).ready(function() {
+			autoCompleteEditPost();
+		});
+		// Autocomplet Add Post
+		function autoCompleteEditPost(){
+  		var optionsEditPost = {  componentRestrictions: { country: 'vn' }
+	  	};
+	  	var inputEditPost = document.getElementById('autocomplete_address_edit_id');
+	  	var autocomplete = new google.maps.places.Autocomplete(inputEditPost, optionsEditPost);
+	      	//End auto complete
+	      }
+		</script>
 
 	</body>
 	</html>

@@ -197,7 +197,7 @@
           if (status === 'OK') {
             directionsDisplay.setDirections(response);
           } else {
-            window.alert('Directions request failed due to ' + status);
+            window.alert('Không có kết quả cho tuyến đường này. ' + status);
           }
         });
       }

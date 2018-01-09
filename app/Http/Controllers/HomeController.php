@@ -74,4 +74,15 @@ class HomeController extends Controller
     {
         return view('directmove',['position'=>$position]);
     }
+
+    // Chỉ đường bên post
+    public function getDirectPost(Request $request)
+    {
+        $ogrigin = $request->direct_post_name;      //Tên vị trí xuất phát
+        $destination = $request->destination_name;  // Tên vị trí đến
+        $position =  $request->direct_post_name;    //Vị trí xuất phát
+        $endposition = $request->endposition_name;
+        $travelMode = 'DRIVING';
+        return view('direct',['position'=>$position,'endposition'=>$endposition,'ogrigin'=>$ogrigin,'destination'=>$destination, 'travelMode'=>$travelMode]);
+    }
 }

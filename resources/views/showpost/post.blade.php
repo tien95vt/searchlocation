@@ -7,6 +7,23 @@
     margin-bottom: 1px;
     width: 90%;
     } */
+	
+	/*style autocomplete*/
+	.pac-container {
+    background-color: #FFF;
+    z-index: 20;
+    position: fixed;
+    display: inline-block;
+    float: left;
+	}
+	.modal{
+	    z-index: 20;   
+	}
+	.modal-backdrop{
+	    z-index: 10;        
+	}​
+	/*End style autocomplete*/
+
     .new-post{
     	border-bottom: solid 1px #EEEEEE;
     	padding: 4px;
@@ -291,14 +308,13 @@
 							<!-- Phần Body -->
 							<div class="col-md-3 micro-item">
 								<div class="micro-title">
-
 									<a href="" data-toggle="modal" data-target="#modal-phone"><i class="fa fa-phone"></i> Gọi điện</a>
 								</div>
 							</div>
 
 							<div class="col-md-3 micro-item">
-								<div class="micro-title">							
-									<a href=""><i class="fa fa-bookmark"></i> Bộ sưu tập </a>
+								<div class="micro-title">
+									<a href="" data-toggle="modal" data-target="#modal-direct" id="direct_id"><i class="fa fa-car"></i> Chỉ đường </a>
 								</div>
 							</div>
 
@@ -547,6 +563,29 @@
 		</div>
 	</div>
 </div>
+{{-- Modal chỉ đường --}}
+<div class="modal fade" id="modal-direct" role="dialog">
+	<div class="modal-dialog ">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Nhập vị trí xuất phát</h4>
+			</div>
+			<div class="modal-body">
+				<form action="{{route('direct_post')}}">
+					{{-- vị trí xuất phát --}}
+					<input type="text" class="form-control" id="post_auto_id" name="direct_post_name">
+					{{-- Vị trí điểm điến --}}
+					<input type="hidden" value="{{$curentPost->address}}" name="endposition_name">
+					{{-- Tên điểm điến --}}
+					<input type="hidden" value="{{$curentPost->title}}" name="destination_name">
+					<br>
+					<button type="summit" class="btn btn-primary">Chỉ đường</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 <script>
 	$(document).ready(function(){
 
@@ -623,6 +662,22 @@
 		});
 	});
 </script>
+{{-- Autocomplite bên trang post --}}
+  <script>
+  	$(document).ready(function() {
+  		$('#direct_id').click(function(){
+  			autoCompletePost();
+  		});
+  	});
+  	function autoCompletePost(){
+  		var optionsPost = {  componentRestrictions: { country: 'vn' }
+  	};
+  	var inputPost = document.getElementById('post_auto_id');
+  	var autocomplete = new google.maps.places.Autocomplete(inputPost, optionsPost);
+      	//End auto complete
+      }
+  </script>
+  {{-- End Autocomplite bên trang post --}}
 @include('layouts.footer')
 
 </body>

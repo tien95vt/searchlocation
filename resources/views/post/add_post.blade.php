@@ -86,7 +86,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="pwd"> Địa chỉ:</label>
 					<div class="col-sm-10">          
-						<input type="text" class="form-control" id="" name="n_address" placeholder="Địa chỉ công ty" value="{{old('n_address')}}">
+						<input type="text" class="form-control" id="autocomplete_address_id" name="n_address" placeholder="Địa chỉ công ty" value="{{old('n_address')}}">
 					</div>
 				</div>
 				<div class="form-group">
@@ -131,7 +131,19 @@
 		$(document).ready(function($) {
 			$('#menu').css('display', 'none');
 		});
-
+	</script>
+	<script>
+		$(document).ready(function() {
+			autoCompleteAddPost();
+		});
+		// Autocomplet Add Post
+		function autoCompleteAddPost(){
+  		var optionsAddPost = {  componentRestrictions: { country: 'vn' }
+	  	};
+	  	var inputAddPost = document.getElementById('autocomplete_address_id');
+	  	var autocomplete = new google.maps.places.Autocomplete(inputAddPost, optionsAddPost);
+	      	//End auto complete
+	      }
 	</script>
 
 </body>
