@@ -579,6 +579,8 @@
 					<input type="hidden" value="{{$curentPost->address}}" name="endposition_name">
 					{{-- Tên điểm điến --}}
 					<input type="hidden" value="{{$curentPost->title}}" name="destination_name">
+					{{-- Tên điểm điến --}}
+					<input type="hidden" value="No function" name="no_function">
 					<br>
 					<button type="summit" class="btn btn-primary">Chỉ đường</button>
 				</form>
