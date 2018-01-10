@@ -95,5 +95,6 @@
 		</div>
 	</div>
 </body>
-@include('layouts.footer')	
+@include('layouts.footer_new')	
+{{-- @include('layouts.footer')	 --}}
 </html>
