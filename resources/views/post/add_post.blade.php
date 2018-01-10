@@ -126,7 +126,9 @@
 
 
 
-	@include('layouts.footer')
+	{{-- @include('layouts.footer') --}}
+	@include('layouts.footer_new')
+
 	<script  type="text/javascript" charset="utf-8" async defer>
 		$(document).ready(function($) {
 			$('#menu').css('display', 'none');

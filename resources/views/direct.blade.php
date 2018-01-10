@@ -208,6 +208,7 @@
           $('[data-toggle="tooltip"]').tooltip();   
       });
     </script>
-    @include('layouts.footer')
+    {{-- @include('layouts.footer') --}}
+    @include('layouts.footer_new')
   </body>
 </html>

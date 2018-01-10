@@ -108,34 +108,6 @@
           </div>
         @endforeach					
         </div>
-				<div class="panel-heading">
-					<center>
-					  <img id="avatar" class="img-circle" width="150px" height="150px" src="images/profile2.jpg">
-					  <p class="p_info"><b>GYM OLYMPUS</b></p>
-					  <p class="p_info" style="font-size:15px;">GYM -&amp;&amp;- FITNESS</p>
-					  <i class="fa fa-angellist fa-3x" aria-hidden="true" style="color:#FFFFFF; margin-bottom:3px;"></i>
-					</center>
-					
-				</div>
-				<div class="panel-body" style="font-size: 17px;">
-					<!-- <div id="contact">
-					  <span class="glyphicon glyphicon-calendar" aria-hidden="true" ></span><span class="spanitem">30/07/1997</span>
-					</div> -->
-					<div id="contact">
-					  <i class="fa fa-envelope" aria-hidden="true"></i><span class="spanitem"> Mail : Olympusgym.info@gmail.com
-					</span>
-					</div>
-					<div id="contact">
-					  <i class="fa fa-phone-square" aria-hidden="true"></i><span class="spanitem">  Phone  : 0122 658 3219</span>
-					</div>
-					<div id="contact">
-					  <i class="fa fa-map-marker" aria-hidden="true"></i><span class="spanitem"> Đc : Lầu 1, Nhà B3, KTX khu B, ĐHQG.</span>
-					</div>
-					<div id="contact">
-					  <i class="fa fa-facebook-square" aria-hidden="true"></i><span class="spanitem"><a target="_black" id="link" href="http://fb.com/tnit97"> http://facebook.olympusgym.vn/
-						</a></span>
-					</div>
-				</div>
 				
 			  </div>
 			</div>
@@ -246,4 +218,5 @@
 
 
 </body>
-@include('layouts.footer')
+{{-- @include('layouts.footer') --}}
+@include('layouts.footer_new')

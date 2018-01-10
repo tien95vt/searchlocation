@@ -680,6 +680,7 @@
       }
   </script>
   {{-- End Autocomplite bên trang post --}}
-@include('layouts.footer')
+{{-- @include('layouts.footer') --}}
+@include('layouts.footer_new')
 
 </body>
