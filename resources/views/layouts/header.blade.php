@@ -25,7 +25,7 @@
         
          $arrayKey = array("AIzaSyDM4ohGC07gP8rsJPC3-BkPOfLqSKgaQvU", "AIzaSyAjsicLOeEsQfdF-rcc9_QBrxP7PCZrz58","AIzaSyD09hk8tNuDaJT7JdDu7NYLjSMdxdAt_6U", "AIzaSyDM59TDUtqoRyJ2sSdGXf97qCfLvfvB6uk",  "AIzaSyBdG28rxjxq78b9162r9YpfINWyzGefSys", "AIzaSyA_cKC7YzUfwQvC7nVYMgB8Gcupt5BAE8k", "AIzaSyB_Ae2YS9wkPDGGA3YpYX5Q7Sxlv-9npp0","AIzaSyCzQcMYA-9FZO4pBZAT7pw1d3U2Y75sMtE","AIzaSyAzTaGh_nkps4V7mQ2GjFqdwRwU8Ypj3xs");   //9
  
-            $key = $arrayKey[4];
+            $key = $arrayKey[1];
        
         $source= "http://maps.googleapis.com/maps/api/js?libraries=places&language=vi&region=VN&key=".$key;
         

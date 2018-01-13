@@ -16,6 +16,8 @@ Route::get('ajax/product_pageA/{page?}', "HomeController@ajaxPaginationA");
 Route::get('ajax/product_pageB/{page?}', "HomeController@ajaxPaginationB");
 // ajax pagination_a idex  Khac  (còn lại)
 Route::get('ajax/product_pageKhac/{page?}', "HomeController@ajaxPaginationKhac");
+// ajax pagination_a idex  cafe
+Route::get('ajax/product_pageCafe/{page?}', "HomeController@ajaxPaginationCafe");
 
 
 // --------------- Begin trang quản trị ---------------------------------

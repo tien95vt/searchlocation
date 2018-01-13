@@ -211,7 +211,7 @@ body {
 .post_item{
     background-color: #fff;
    /* padding: 10px;*/
-    height: 260px;
+    height: 275px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -699,8 +699,8 @@ body {
    text-overflow: ellipsis;
    display: -webkit-box;
    line-height: 16px;     /* fallback */
-   max-height: 16px;      /* fallback */
-   -webkit-line-clamp: 1; /* number of lines to show */
+   max-height: 32px;      /* fallback */
+   -webkit-line-clamp: 2; /* number of lines to show */
    -webkit-box-orient: vertical;
    color: #777;
    font-size: 12px;

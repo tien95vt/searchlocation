@@ -133,9 +133,9 @@
 
         {{-- begin chọn mode chỉ đường : drivnig, bus,... --}}
         <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 10px">
-          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/DRIVING"><button class="btn btn-default" id="driving_id" style="width: 70px" data-toggle="tooltip" data-placement="bottom" title="Đi bằng xe Bus"><i class="fa fa-car fa-2x" aria-hidden="true"></i></button></a>
+          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/DRIVING"><button class="btn btn-default" id="driving_id" style="width: 70px" data-toggle="tooltip" data-placement="bottom" title="Đi bằng xe máy, Ô tô"><i class="fa fa-car fa-2x" aria-hidden="true"></i></button></a>
 
-          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/TRANSIT"><button class="btn btn-default" id="transit_id" style="width: 70px" data-toggle="tooltip" data-placement="bottom" title="Đi bằng xe máy, Ô tô"><i class="fa fa-bus fa-2x" aria-hidden="true"></i></button></a>
+          <a href="{{ asset('direct')}}/{{$position}}/{{$endposition}}/{{$ogrigin}}/{{$destination}}/TRANSIT"><button class="btn btn-default" id="transit_id" style="width: 70px" data-toggle="tooltip" data-placement="bottom" title="Đi bằng xe Bus"><i class="fa fa-bus fa-2x" aria-hidden="true"></i></button></a>
         </div>
         {{-- End chọn mode chỉ đường : drivnig, bus,... --}}
         <div id="right-panel"></div>
